@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* Responsive Design Variables */
+:root {
+  /* iPhone 16 Pro Max: 430px x 932px */
+  --mobile-breakpoint: 430px;
+  /* MacBook Pro 16: 1728px x 1117px */
+  --desktop-breakpoint: 1728px;
+  
+  /* Responsive spacing */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+}
+
+/* Base responsive setup */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+/* Responsive font scaling */
+@media (max-width: 430px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 1728px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Responsive containers */
+.container-responsive {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    max-width: 640px;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-responsive {
+    max-width: 768px;
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    max-width: 1024px;
+    padding: 0 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-responsive {
+    max-width: 1280px;
+    padding: 0 3rem;
+  }
+}
+
+@media (min-width: 1728px) {
+  .container-responsive {
+    max-width: 1728px;
+    padding: 0 4rem;
+  }
+}
+
+/* Touch-friendly elements */
+@media (pointer: coarse) {
+  button, a, input, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Prevent zoom on focus for iOS */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  textarea {
+    font-size: 16px;
+  }
+}
