@@ -4,6 +4,8 @@ import Header from '../components/Header'
 import Hero from '../components/Hero'
 import Hero1 from '../components/Hero1'
 import Feature from '../components/Feature'
+import Feature1 from '../components/Feature1'
+import Feature2 from '../components/Feature2'
 
 const Home = () => {
   return (
@@ -14,6 +16,8 @@ const Home = () => {
         <Hero />
         <Hero1 />
         <Feature />
+        <Feature1 />
+        <Feature2/>
         {/* Future sections can be added here */}
 
       </main>
