@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
-import { hero1, hero2, hero3 } from '../assets/assets'
+import React, { useState, useEffect } from "react";
+import { hero1, hero2, hero3 } from "../assets/assets";
 
 const heroImages = [hero1, hero2, hero3];
 const heroCaptions = [
-  'We collaborate closely with clients.',
-  'We turn ideas into innovative digital solutions.',
-  'We are a team of creative professionals.'
+  "We collaborate closely with clients.",
+  "We turn ideas into innovative digital solutions.",
+  "We are a team of creative professionals.",
 ];
 
 const Hero = () => {
@@ -27,39 +27,31 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero-section" style={{ display: 'flex', alignItems: 'center', gap: 40, background: 'linear-gradient(45deg, #f8f9fa, #ffffff)' }}>
-      
-      <div className="hero-image" style={{ flex: 1, maxWidth: 400, minWidth: 260, display: 'flex', justifyContent: 'flex-end', position: 'relative' }}>
-        <div style={{ background: '#e9f0fa', borderRadius: 16, padding: 24, boxShadow: '0 8px 30px rgba(0,0,0,0.12)', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
-          <div style={{ position: 'relative', width: '100%' }}>
+    <section
+      className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 bg-gradient-to-r from-gray-100 to-white px-4 sm:px-6 lg:px-8 py-8 lg:py-12"
+      >
+      <div 
+        className="flex-1 max-w-2xl min-w-[260px] flex justify-center lg:justify-end relative order-2 lg:order-1"
+      >
+        <div
+          className="bg-blue-50 rounded-lg p-4 sm:p-6 shadow-xl w-full flex flex-col items-center relative"
+        >
+          <div className="relative w-full h-64 sm:h-80 lg:h-96">
             <img
               src={heroImages[current]}
               alt={`Slide ${current + 1}`}
-              style={{ width: '100%', borderRadius: 12, marginTop: 8, boxShadow: '0 4px 16px rgba(102,126,234,0.10)', transition: 'all 0.5s' }}
+              className="w-full h-full rounded-lg object-cover shadow-lg transition-all duration-500"
             />
             {/* Caption Overlay */}
-            <div style={{
-              position: 'absolute',
-              bottom: 20,
-              left: '50%',
-              transform: 'translateX(-50%)',
-              background: 'rgba(44,62,80,0.85)',
-              color: '#fff',
-              padding: '10px 20px',
-              borderRadius: 8,
-              fontWeight: 500,
-              fontSize: '1rem',
-              textAlign: 'center',
-              maxWidth: '90%',
-              boxShadow: '0 2px 8px rgba(0,0,0,0.10)',
-              zIndex: 3
-            }}>
+            <div
+              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 bg-opacity-85 text-white px-4 py-2 rounded-lg font-medium text-center max-w-[90%] shadow-md z-30"
+            >
               {heroCaptions[current]}
             </div>
             {/* Left Arrow */}
             <button
               onClick={prevSlide}
-              style={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)', background: '#fff', border: 'none', borderRadius: '50%', width: 32, height: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.10)', cursor: 'pointer', zIndex: 2 }}
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-white border-none rounded-full w-8 h-8 shadow-md cursor-pointer z-20 hover:shadow-lg transition-shadow duration-200"
               aria-label="Previous"
             >
               &#8592;
@@ -67,7 +59,7 @@ const Hero = () => {
             {/* Right Arrow */}
             <button
               onClick={nextSlide}
-              style={{ position: 'absolute', top: '50%', right: 0, transform: 'translateY(-50%)', background: '#fff', border: 'none', borderRadius: '50%', width: 32, height: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.10)', cursor: 'pointer', zIndex: 2 }}
+              className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-white border-none rounded-full w-8 h-8 shadow-md cursor-pointer z-20 hover:shadow-lg transition-shadow duration-200"
               aria-label="Next"
             >
               &#8594;
@@ -75,46 +67,60 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="hero-content" style={{ flex: 2, paddingRight: 32 }}>
-        <h2 style={{ fontWeight: 700, fontSize: '2.2rem', marginBottom: 8 }}>Who We Are</h2>
-        <h3 style={{ fontWeight: 600, fontSize: '1.3rem', marginBottom: 12 }}>
+      <div className="flex-[2] mt-6 lg:mt-0 px-4 lg:px-0 lg:pr-8 order-1 lg:order-2 text-center lg:text-left">
+        <h2 className="font-bold text-2xl sm:text-3xl lg:text-4xl mb-2">
+          Who We Are
+        </h2>
+        <h3 className="font-semibold text-lg sm:text-xl lg:text-2xl mb-3">
           We Design. We Build. We Innovate.
         </h3>
-        <p style={{ color: '#555', fontSize: '1rem', marginBottom: 18 }}>
-          At Digital Innovation, we bring your ideas to life with innovative designs and reliable solutions. 
-          From custom websites to cutting-edge apps, 
-          our team is dedicated to helping your business grow and succeed in the digital world.
+        <p className="text-gray-600 text-sm sm:text-base mb-5">
+          At Digital Innovation, we bring your ideas to life with innovative
+          designs and reliable solutions. From custom websites to cutting-edge
+          apps, our team is dedicated to helping your business grow and succeed
+          in the digital world.
         </p>
-        <ul style={{ listStyle: 'none', padding: 0, marginBottom: 24 }}>
-          <li style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ color: '#22c55e', fontSize: 20, marginRight: 10 }}>✔</span>
-            Passionate About Using Technology to Drive Innovation
+        <ul className="list-none p-0 mb-6 space-y-2">
+          <li className="flex items-center justify-center lg:justify-start">
+            <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
+              ✔
+            </span>
+            <span className="text-sm sm:text-base">Passionate About Using Technology to Drive Innovation</span>
           </li>
-          <li style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ color: '#22c55e', fontSize: 20, marginRight: 10 }}>✔</span>
-            Experts in Crafting Tailored Digital Solutions
+          <li className="flex items-center justify-center lg:justify-start">
+            <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
+              ✔
+            </span>
+            <span className="text-sm sm:text-base">Experts in Crafting Tailored Digital Solutions</span>
           </li>
-          <li style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ color: '#22c55e', fontSize: 20, marginRight: 10 }}>✔</span>
-            Focused on Your Long-Term Success
+          <li className="flex items-center justify-center lg:justify-start">
+            <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
+              ✔
+            </span>
+            <span className="text-sm sm:text-base">Focused on Your Long-Term Success</span>
           </li>
-          <li style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ color: '#22c55e', fontSize: 20, marginRight: 10 }}>✔</span>
-            Delivering Reliable Results You Can Trust
+          <li className="flex items-center justify-center lg:justify-start">
+            <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
+              ✔
+            </span>
+            <span className="text-sm sm:text-base">Delivering Reliable Results You Can Trust</span>
           </li>
-          <li style={{ display: 'flex', alignItems: 'center', marginBottom: 8 }}>
-            <span style={{ color: '#22c55e', fontSize: 20, marginRight: 10 }}>✔</span>
-            Always Here to Help
+          <li className="flex items-center justify-center lg:justify-start">
+            <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
+              ✔
+            </span>
+            <span className="text-sm sm:text-base">Always Here to Help</span>
           </li>
         </ul>
-        <a href="#contact"
-           className="inline-block mt-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-400 to-green-400 text-white font-bold rounded-lg shadow-lg transition-transform duration-200 hover:scale-105 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <a
+          href="#contact"
+          className="inline-block mt-2 px-6 py-3 bg-gradient-to-r from-blue-600 via-blue-400 to-green-400 text-white font-bold rounded-lg shadow-lg transition-transform duration-200 hover:scale-105 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
           Contact Us &rarr;
         </a>
       </div>
-     
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

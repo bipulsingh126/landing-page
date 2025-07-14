@@ -1,31 +1,35 @@
-import React from 'react'
+import React from "react";
 
 const Feature = () => {
   const processSteps = [
     {
       icon: "🔍",
       title: "Discover & Ideate",
-      description: "Understanding the project's goals, target audience, and challenges through research and brainstorming creative strategies."
+      description:
+        "Understanding the project's goals, target audience, and challenges through research and brainstorming creative strategies.",
     },
     {
       icon: "💻",
       title: "Design & Development",
-      description: "Crafting innovative solutions with precision, blending functionality and creativity to bring ideas to life."
+      description:
+        "Crafting innovative solutions with precision, blending functionality and creativity to bring ideas to life.",
     },
     {
       icon: "📋",
       title: "Feedback & Refinement",
-      description: "Collaborating to gather insights, making iterative improvements, and ensuring the solution is flawless."
+      description:
+        "Collaborating to gather insights, making iterative improvements, and ensuring the solution is flawless.",
     },
     {
       icon: "🚀",
       title: "Launch & Support",
-      description: "Seamlessly deploying the final product while providing ongoing support to ensure success and growth."
-    }
-  ]
+      description:
+        "Seamlessly deploying the final product while providing ongoing support to ensure success and growth.",
+    },
+  ];
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
+    <section className="pb-16 px-4 sm:px-6 lg:px-8 bg-white">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -57,10 +61,9 @@ const Feature = () => {
             </div>
           ))}
         </div>
-
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Feature
+export default Feature;
