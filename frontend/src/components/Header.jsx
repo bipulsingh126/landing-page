@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { header } from "../assets/assets";
 
 const animatedTexts = [
   "Web Development",
@@ -49,99 +48,111 @@ const Header = () => {
   }, [animateOut]);
 
   return (
-    <div className="w-full min-h-[400px] xs:min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-screen relative flex items-stretch">
-      <div className="absolute inset-0 z-0 overflow-hidden shadow-xl lg:shadow-2xl group transition-all duration-700">
-        <img
-          className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 ease-in-out"
-          src={header}
-          alt="header"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-blue-900/30 to-black/70"></div>
+    <div className="w-full min-h-screen relative flex items-stretch bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <div className="w-full h-full bg-gradient-to-br from-blue-600/5 via-purple-600/5 to-cyan-600/5"></div>
+        {/* Geometric patterns */}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-200/20 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-48 h-48 bg-purple-200/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-20 left-1/3 w-40 h-40 bg-cyan-200/20 rounded-full blur-xl animate-pulse delay-2000"></div>
       </div>
-      {/* Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-10 px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between h-full py-6 xs:py-8 sm:py-12 md:py-16 lg:py-20">
+      {/* Main Content */}
+      <div className="relative z-10 w-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">
+        <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between py-12 lg:py-20">
           {/* Left: Headline */}
-          <div className="w-full lg:w-1/2 text-center lg:text-left mb-6 xs:mb-8 sm:mb-10 md:mb-12 lg:mb-0 px-2 sm:px-4">
-            <h2 className="text-white text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-semibold mb-2 sm:mb-3 md:mb-4 tracking-wide drop-shadow-lg leading-tight">
-              INNOVATING THE
-            </h2>
-            <h1 className="text-white text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-2 sm:mb-3 md:mb-4 tracking-wide drop-shadow-lg relative inline-block leading-tight">
-              FUTURE OF
-              <span className="block h-0.5 sm:h-1 lg:h-1.5 w-2/3 bg-gradient-to-r from-green-400 to-blue-500 rounded-full mt-2 sm:mt-3 animate-pulse mx-auto lg:mx-0"></span>
+          <div className="w-full lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0 px-4">
+            <div className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-semibold mb-6">
+              🚀 Innovation Meets Excellence
+            </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              Building
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600">
+                Digital Future
+              </span>
             </h1>
-            <h1 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold tracking-wide bg-gradient-to-r from-green-400 via-blue-400 to-purple-500 bg-clip-text text-transparent drop-shadow-lg animate-gradient-x leading-tight">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-700 mb-8 h-12">
+              <span className="text-blue-600">Specialized in </span>
               <span
-                className={`inline-block min-w-[120px] xs:min-w-[150px] sm:min-w-[200px] md:min-w-[250px] lg:min-w-[300px] text-center neon-glow ${
+                className={`inline-block min-w-[200px] text-left bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent ${
                   typing ? "typewriter" : ""
                 } ${animateOut ? "swipe-up-fade" : ""}`}
                 key={currentTextIdx}
               >
                 {displayedText}
               </span>
-            </h1>
+            </div>
+            <p className="text-lg text-gray-600 mb-8 max-w-2xl leading-relaxed">
+              We transform ideas into powerful digital solutions that drive growth and innovation. Let's build something extraordinary together.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <a
+                href="#contact"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-110 transition-all duration-500 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50"
+              >
+                Start Your Project
+              </a>
+              <a
+                href="#portfolio"
+                className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-full font-semibold text-lg hover:border-blue-600 hover:text-blue-600 hover:bg-blue-50 transform hover:scale-110 transition-all duration-500 shadow-md hover:shadow-lg"
+              >
+                View Our Work
+              </a>
+            </div>
           </div>
           {/* Right: Contact Form */}
           <div className="w-full xs:w-11/12 sm:w-4/5 md:w-3/5 lg:w-1/2 xl:w-2/5 flex justify-center px-2 sm:px-4">
-            <form className="group relative bg-white/10 rounded-2xl sm:rounded-3xl shadow-2xl lg:shadow-3xl p-4 xs:p-5 sm:p-6 md:p-8 w-full max-w-xs xs:max-w-sm lg:max-w-md backdrop-blur-3xl transition-all duration-500 hover:bg-white/15 hover:shadow-3xl hover:scale-105 border border-white/20 overflow-hidden">
+            <form className="group relative bg-white/95 rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-md backdrop-blur-sm transition-all duration-300 hover:shadow-3xl hover:scale-[1.02] border border-white/30 overflow-hidden">
               {/* Animated background glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl sm:rounded-3xl"></div>
-
-              {/* Glow effect */}
-              <div className="absolute inset-0 rounded-2xl sm:rounded-3xl blur-xl bg-gradient-to-br from-blue-600/30 via-purple-600/30 to-cyan-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-cyan-600/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-3xl"></div>
 
               <div className="relative z-10">
                 <div className="text-center mb-4 sm:mb-6">
-                  <h3 className="text-white text-base xs:text-lg sm:text-xl md:text-2xl font-bold mb-1 sm:mb-2 drop-shadow-lg">
-                    Let&apos;s Connect!
+                  <h3 className="text-gray-800 text-xl md:text-2xl font-bold mb-2">
+                    Let's Connect! 🚀
                   </h3>
-                  <p className="text-white/90 text-xs sm:text-sm md:text-base mb-3 sm:mb-4 drop-shadow-md">
-                    Send us a quick inquiry
+                  <p className="text-gray-600 text-sm md:text-base mb-4">
+                    Ready to transform your ideas?
                   </p>
-                  <div className="h-0.5 w-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto animate-pulse"></div>
+                  <div className="h-0.5 w-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto"></div>
                 </div>
 
-                <div className="space-y-3 sm:space-y-4">
-                  <div className="relative group">
+                <div className="space-y-4">
+                  <div className="relative">
                     <input
                       type="text"
                       placeholder="Full Name*"
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 md:py-3.5 rounded-xl sm:rounded-2xl border border-white/30 bg-white/10 placeholder-white/70 text-white focus:bg-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-xs sm:text-sm md:text-base transition-all duration-300 backdrop-blur-sm hover:bg-white/15 hover:border-white/40"
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
                     />
-                    <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-400/20 to-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
                   </div>
 
-                  <div className="relative group">
+                  <div className="relative">
                     <input
                       type="email"
                       placeholder="Email Address*"
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 md:py-3.5 rounded-xl sm:rounded-2xl border border-white/30 bg-white/10 placeholder-white/70 text-white focus:bg-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-xs sm:text-sm md:text-base transition-all duration-300 backdrop-blur-sm hover:bg-white/15 hover:border-white/40"
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
                     />
-                    <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-purple-400/20 to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
                   </div>
 
-                  <div className="relative group">
+                  <div className="relative">
                     <input
                       type="tel"
                       placeholder="Phone Number*"
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 md:py-3.5 rounded-xl sm:rounded-2xl border border-white/30 bg-white/10 placeholder-white/70 text-white focus:bg-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-xs sm:text-sm md:text-base transition-all duration-300 backdrop-blur-sm hover:bg-white/15 hover:border-white/40"
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
                     />
-                    <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-cyan-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
                   </div>
 
-                  <div className="relative group">
+                  <div className="relative">
                     <textarea
                       placeholder="Write Your Query"
-                      className="w-full px-3 sm:px-4 py-2 sm:py-3 md:py-3.5 rounded-xl sm:rounded-2xl border border-white/30 bg-white/10 placeholder-white/70 text-white focus:bg-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 text-xs sm:text-sm md:text-base transition-all duration-300 backdrop-blur-sm hover:bg-white/15 hover:border-white/40 resize-none min-h-[60px] sm:min-h-[80px]"
-                      rows={2}
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70 resize-none min-h-[80px]"
+                      rows={3}
                     ></textarea>
-                    <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-400/20 to-purple-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-sm"></div>
                   </div>
                 </div>
 
                 <button
                   type="submit"
-                  className="group relative w-full mt-4 sm:mt-6 px-4 py-2 sm:py-3 md:py-3.5 text-white font-semibold rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 transition-all duration-500 shadow-lg hover:shadow-2xl transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm border border-white/20 overflow-hidden text-xs sm:text-sm md:text-base"
+                  className="group relative w-full mt-4 sm:mt-6 px-4 py-2 sm:py-3 md:py-3.5 text-white font-semibold rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 transition-all duration-700 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 hover:scale-110 backdrop-blur-sm border border-white/20 overflow-hidden text-xs sm:text-sm md:text-base"
                 >
                   {/* Animated background */}
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -150,7 +161,7 @@ const Header = () => {
                   <div className="absolute inset-0 rounded-xl sm:rounded-2xl blur-lg bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-cyan-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
 
                   <span className="relative z-10 flex items-center justify-center">
-                    Submit Inquiry
+                    Get Started Now
                     <svg
                       className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
                       fill="none"

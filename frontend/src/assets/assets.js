@@ -9,4 +9,5 @@ import logo2 from './logo/logo2.png';
 import logo3 from './logo/logo3.png';
 import logo4 from './logo/logo4.png';
 
-export { logo, header, hero1, hero2, hero3 , logo1, logo2, logo3, logo4};
+
+export { logo, header, hero1, hero2, hero3 , logo1, logo2, logo3, logo4,};

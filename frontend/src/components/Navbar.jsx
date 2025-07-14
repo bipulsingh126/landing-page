@@ -34,42 +34,55 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="w-full bg-white border-b border-gray-300 relative z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+    <nav className="w-full bg-white/95 backdrop-blur-lg fixed top-0 left-0 z-50 shadow-lg border-b border-gray-200/50 transition-all duration-300">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
         {/* Logo */}
         <img
-          className="h-8 w-24 sm:h-10 sm:w-32 object-contain"
+          className="h-10 w-28 sm:h-12 sm:w-36 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
           src={logo}
           alt="logo"
         />
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex space-x-4 lg:space-x-6 text-xs lg:text-sm text-[#1a355e] font-normal">
+        <ul className="hidden lg:flex space-x-8 text-sm font-semibold">
           <li>
             <a
-              href="#home"
-              className="transition-all duration-200 ease-in-out hover:text-blue-600 hover:scale-110 hover:shadow-md px-2 py-1 rounded"
+              href="#services"
+              className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
             >
               Services
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
           <li>
             <a
-              href="#about"
-              className="transition-all duration-200 ease-in-out hover:text-blue-600 hover:scale-110 hover:shadow-md px-2 py-1 rounded"
+              href="#portfolio"
+              className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
             >
               Portfolio
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
           <li>
             <a
               href="#contact"
-              className="transition-all duration-200 ease-in-out hover:text-blue-600 hover:scale-110 hover:shadow-md px-2 py-1 rounded"
+              className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
             >
               Contact Us
+              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
           </li>
         </ul>
+
+        {/* CTA Button */}
+        <div className="hidden lg:block">
+          <a
+            href="#contact"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-sm hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+          >
+            Get Started
+          </a>
+        </div>
 
         {/* Mobile Menu Button */}
         <button
