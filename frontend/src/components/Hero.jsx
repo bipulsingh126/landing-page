@@ -27,15 +27,9 @@ const Hero = () => {
   };
 
   return (
-    <section
-      className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 bg-gradient-to-r from-gray-100 to-white px-4 sm:px-6 lg:px-8 py-8 lg:py-12"
-      >
-      <div 
-        className="flex-1 max-w-2xl min-w-[260px] flex justify-center lg:justify-end relative order-2 lg:order-1"
-      >
-        <div
-          className="bg-blue-50 rounded-lg p-4 sm:p-6 shadow-xl w-full flex flex-col items-center relative"
-        >
+    <section className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10 bg-gradient-to-r from-gray-100 to-white px-4 sm:px-6 lg:px-8 py-5 lg:py-12">
+      <div className="flex-1 max-w-2xl min-w-[260px] flex justify-center lg:justify-end relative order-2 lg:order-1">
+        <div className="bg-blue-50 rounded-lg p-4 sm:p-6 shadow-xl w-full flex flex-col items-center relative">
           <div className="relative w-full h-64 sm:h-80 lg:h-96">
             <img
               src={heroImages[current]}
@@ -43,9 +37,7 @@ const Hero = () => {
               className="w-full h-full rounded-lg object-cover shadow-lg transition-all duration-500"
             />
             {/* Caption Overlay */}
-            <div
-              className="absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 bg-opacity-85 text-white px-4 py-2 rounded-lg font-medium text-center max-w-[90%] shadow-md z-30"
-            >
+            <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 bg-gray-800 bg-opacity-85 text-white px-4 py-2 rounded-lg font-medium text-center max-w-[90%] shadow-md z-30">
               {heroCaptions[current]}
             </div>
             {/* Left Arrow */}
@@ -85,25 +77,33 @@ const Hero = () => {
             <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
               ✔
             </span>
-            <span className="text-sm sm:text-base">Passionate About Using Technology to Drive Innovation</span>
+            <span className="text-sm sm:text-base">
+              Passionate About Using Technology to Drive Innovation
+            </span>
           </li>
           <li className="flex items-center justify-center lg:justify-start">
             <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
               ✔
             </span>
-            <span className="text-sm sm:text-base">Experts in Crafting Tailored Digital Solutions</span>
+            <span className="text-sm sm:text-base">
+              Experts in Crafting Tailored Digital Solutions
+            </span>
           </li>
           <li className="flex items-center justify-center lg:justify-start">
             <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
               ✔
             </span>
-            <span className="text-sm sm:text-base">Focused on Your Long-Term Success</span>
+            <span className="text-sm sm:text-base">
+              Focused on Your Long-Term Success
+            </span>
           </li>
           <li className="flex items-center justify-center lg:justify-start">
             <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">
               ✔
             </span>
-            <span className="text-sm sm:text-base">Delivering Reliable Results You Can Trust</span>
+            <span className="text-sm sm:text-base">
+              Delivering Reliable Results You Can Trust
+            </span>
           </li>
           <li className="flex items-center justify-center lg:justify-start">
             <span className="text-green-500 text-lg sm:text-xl mr-3 flex-shrink-0">

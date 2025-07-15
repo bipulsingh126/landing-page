@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { logo } from "../assets/assets";
 
 const Navbar = () => {
@@ -37,51 +38,56 @@ const Navbar = () => {
     <nav className="w-full bg-white/95 backdrop-blur-lg fixed top-0 left-0 z-50 shadow-lg border-b border-gray-200/50 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
         {/* Logo */}
-        <img
-          className="h-10 w-28 sm:h-12 sm:w-36 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
-          src={logo}
-          alt="logo"
-        />
+        <Link to="/">
+          <img
+            className="h-10 w-28 sm:h-12 sm:w-36 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
+            src={logo}
+            alt="logo"
+          />
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden lg:flex space-x-8 text-sm font-semibold">
           <li>
-            <a
-              href="#services"
+            <Link
+              to="/services"
+              onClick={() => setIsMenuOpen(false)}
               className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
             >
               Services
               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#portfolio"
+            <Link
+              to="/portfolio"
+              onClick={() => setIsMenuOpen(false)}
               className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
             >
               Portfolio
               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="#contact"
+            <Link
+              to="/contact"
+              onClick={() => setIsMenuOpen(false)}
               className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
             >
               Contact Us
               <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </a>
+            </Link>
           </li>
         </ul>
 
         {/* CTA Button */}
         <div className="hidden lg:block">
-          <a
-            href="#contact"
+          <Link
+            to="/contact"
             className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-sm hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -127,31 +133,31 @@ const Navbar = () => {
         >
           <ul className="flex flex-col space-y-0 text-sm text-[#1a355e] font-normal py-2">
             <li>
-              <a
-                href="#home"
+              <Link
+                to="/services"
                 className="block px-6 py-4 transition-all duration-200 ease-in-out hover:text-blue-600 hover:bg-gray-50 active:bg-gray-100"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#about"
+              <Link
+                to="/portfolio"
                 className="block px-6 py-4 transition-all duration-200 ease-in-out hover:text-blue-600 hover:bg-gray-50 active:bg-gray-100"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Portfolio
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="block px-6 py-4 transition-all duration-200 ease-in-out hover:text-blue-600 hover:bg-gray-50 active:bg-gray-100"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
