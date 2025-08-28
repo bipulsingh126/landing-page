@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 import Navbar from "./Navbar";
 
 const Feature4 = () => {
@@ -8,10 +9,12 @@ const Feature4 = () => {
     name: "",
     email: "",
     phone: "",
+    service: "",
     message: "",
   });
 
-  const [focusedField, setFocusedField] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'config_error', 'duplicate', 'template_error'
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +24,73 @@ const Feature4 = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Handle form submission here
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const submittedEmails = JSON.parse(localStorage.getItem("submittedEmails")) || [];
+    if (submittedEmails.includes(formData.email)) {
+      setSubmitStatus("duplicate");
+      setIsSubmitting(false);
+      return;
+    }
+
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      setSubmitStatus("error");
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      const serviceId = "service_gu5imno";
+      const templateId = "template_syc4oxw";
+      const publicKey = "3d4M0E3ZbFPgVh_Ra";
+
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        service: formData.service,
+        message: formData.message || "No message provided",
+        to_name: "Admin",
+        reply_to: formData.email,
+      };
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        templateParams,
+        publicKey
+      );
+      
+      setSubmitStatus("success");
+
+      const updatedEmails = [...submittedEmails, formData.email];
+      localStorage.setItem("submittedEmails", JSON.stringify(updatedEmails));
+
+      navigate("/thankyou");
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+      
+    } catch (error) {
+      console.error("Error sending email:", error);
+      if (error.status === 412) {
+        setSubmitStatus("config_error");
+      } else if (error.status === 400) {
+        setSubmitStatus("template_error");
+      } else {
+        setSubmitStatus("error");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -33,7 +99,7 @@ const Feature4 = () => {
 
       <section
         id="contact"
-        className="px-4 sm:px-6 lg:px-8 bg-gradient-to-br min-h-screen flex items-center justify-center relative"
+        className="px-4 sm:px-6 lg:px-8 bg-gradient-to-br min-h-screen flex items-start sm:items-center justify-center relative py-20 sm:py-12"
       >
         {/* Background Pattern */}
         <div
@@ -43,104 +109,438 @@ const Feature4 = () => {
           }}
         />
 
-        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 md:p-10 shadow-2xl border border-white/30 relative z-10">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <div className="inline-block p-2 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full mb-4">
-              <span className="text-xl text-white">💬</span>
-            </div>
-            <h2 className="text-4xl font-extrabold bg-gradient-to-r from-indigo-500 to-purple-600 bg-clip-text text-transparent mb-3 tracking-tight">
-              How Can We Help?
-            </h2>
-            <p className="text-lg text-slate-600 leading-relaxed max-w-md mx-auto">
-              We Respect Your Privacy, And Your Data Is Fully Confidential.
-            </p>
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 relative z-10 my-4 sm:my-8">
+          {/* Contact Form - Left Side */}
+          
+          <div className="w-full flex justify-center px-2 sm:px-4">
+            <form
+              onSubmit={handleSubmit}
+              className="group relative bg-white/95 rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-md backdrop-blur-sm transition-all duration-300 hover:shadow-3xl hover:scale-[1.02] border border-white/30 overflow-hidden"
+            >
+              {/* Animated background glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-cyan-600/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-3xl"></div>
+
+              <div className="relative z-10">
+                <div className="text-center mb-4 sm:mb-6">
+                  <h3 className="text-gray-800 text-xl md:text-2xl font-bold mb-2">
+                    Let's Connect! 🚀
+                  </h3>
+                  <p className="text-gray-600 text-sm md:text-base mb-4">
+                    Ready to transform your ideas?
+                  </p>
+                  <div className="h-0.5 w-16 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mx-auto"></div>
+                </div>
+
+                {/* Status Messages */}
+                {submitStatus === "success" && (
+                  <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-2xl flex items-center gap-2">
+                    <span className="text-green-600 text-lg">✅</span>
+                    <div>
+                      <p className="text-green-800 font-medium text-sm">
+                        Message sent successfully!
+                      </p>
+                      <p className="text-green-600 text-xs">
+                        We'll get back to you soon.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === "error" && (
+                  <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-2xl flex items-center gap-2">
+                    <span className="text-red-600 text-lg">❌</span>
+                    <div>
+                      <p className="text-red-800 font-medium text-sm">
+                        Failed to send message
+                      </p>
+                      <p className="text-red-600 text-xs">Please try again.</p>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === "config_error" && (
+                  <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-2xl flex items-center gap-2">
+                    <span className="text-yellow-600 text-lg">⚠️</span>
+                    <div>
+                      <p className="text-yellow-800 font-medium text-sm">
+                        EmailJS Configuration Error
+                      </p>
+                      <p className="text-yellow-600 text-xs">
+                        Please check your EmailJS credentials.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === "duplicate" && (
+                  <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-2xl flex items-center gap-2">
+                    <span className="text-yellow-600 text-lg">⚠️</span>
+                    <div>
+                      <p className="text-yellow-800 font-medium text-sm">
+                        Already Submitted
+                      </p>
+                      <p className="text-yellow-600 text-xs">
+                        A form with this email has already been submitted.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {submitStatus === "template_error" && (
+                  <div className="mb-4 p-3 bg-orange-50 border border-orange-200 rounded-2xl flex items-center gap-2">
+                    <span className="text-orange-600 text-lg">🔧</span>
+                    <div>
+                      <p className="text-orange-800 font-medium text-sm">
+                        Template Error
+                      </p>
+                      <p className="text-orange-600 text-xs">
+                        Please check your EmailJS template variables.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <div className="space-y-4">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Full Name*"
+                      required
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Email Address*"
+                      required
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Phone Number*"
+                      required
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
+                    />
+                  </div>
+
+                  <div className="relative">
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70 appearance-none"
+                    >
+                      <option value="" disabled>Request for service*</option>
+                      <option value="Web Development">Web Design</option>
+                      <option value="Android Development"> Mobile App Development</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="AI/ML Development">AI/ML Development</option>
+                      <option value="Digital Marketing">Digital Marketing</option>
+                    </select>
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                      <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Write Your Query"
+                      rows={3}
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70 resize-none min-h-[80px]"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`group relative w-full mt-4 sm:mt-6 px-4 py-2 sm:py-3 md:py-3.5 text-white font-semibold rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 transition-all duration-700 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 hover:scale-110 backdrop-blur-sm border border-white/20 overflow-hidden text-xs sm:text-sm md:text-base ${
+                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                >
+                  {/* Animated background */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                  {/* Glow effect */}
+                  <div className="absolute inset-0 rounded-xl sm:rounded-2xl blur-lg bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-cyan-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
+
+                  <span className="relative z-10 flex items-center justify-center">
+                    {isSubmitting ? (
+                      <>
+                        <svg
+                          className="animate-spin h-4 w-4 mr-2 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Get Started Now
+                        <svg
+                          className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2.5}
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                          />
+                        </svg>
+                      </>
+                    )}
+                  </span>
+
+                  {/* Shimmer effect */}
+                  <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
+                </button>
+              </div>
+            </form>
           </div>
+          {/* Address Information - Right Side */}
+          <div className="bg-gradient-to-br from-slate-50 to-white backdrop-blur-sm rounded-2xl p-6 sm:p-8 shadow-2xl border border-white/30 relative overflow-hidden">
+            {/* Decorative background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50 rounded-2xl"></div>
 
-          {/* Form */}
-          <form onSubmit={handleSubmit}>
-            {/* Name Field */}
-            <div className="mb-6 relative">
-              <label className="block text-base font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                <span className="text-lg">👤</span>
-                Name*
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                placeholder="Write Your Full Name Here"
-                required
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base text-gray-700 bg-gray-50 focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 focus:bg-white transition-all duration-300 transform focus:-translate-y-0.5 shadow-sm"
-                onFocus={() => setFocusedField("name")}
-                onBlur={() => setFocusedField(null)}
-              />
-            </div>
-
-            {/* Email and Phone Row */}
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6">
-              {/* Email Field */}
-              <div className="flex-1">
-                <label className="block text-base font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                  <span className="text-lg">📧</span>
-                  Email Address*
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Write Your Email Address Here"
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base text-gray-700 bg-gray-50 focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 focus:bg-white transition-all duration-300 transform focus:-translate-y-0.5 shadow-sm"
-                />
+            {/* Content */}
+            <div className="relative z-10">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <div className="inline-block p-3 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 shadow-lg">
+                  <svg
+                    className="w-6 h-6 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    ></path>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+                  Get In Touch
+                </h3>
+                <p className="text-gray-600 text-sm sm:text-base">
+                  Visit us or contact us directly
+                </p>
               </div>
 
-              {/* Phone Field */}
-              <div className="flex-1">
-                <label className="block text-base font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                  <span className="text-lg">📱</span>
-                  Phone Number*
-                </label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="Write Your Phone Number Here"
-                  required
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base text-gray-700 bg-gray-50 focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 focus:bg-white transition-all duration-300 transform focus:-translate-y-0.5 shadow-sm"
-                />
+              {/* Contact Information */}
+              <div className="space-y-6">
+                {/* Address */}
+                <div className="group p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-100">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-blue-100 rounded-lg group-hover:bg-blue-200 transition-colors duration-300">
+                      <svg
+                        className="w-5 h-5 text-blue-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                        ></path>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">
+                        Office Address
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Digital innovations , Near SBI bank,{" "}
+                        <br />
+                         tahsil road, Nakur, Saharanpur pincode -
+                        247342
+                        <br />
+                        Uttar Pradesh , India
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phone */}
+                <div className="group p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-100">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-green-100 rounded-lg group-hover:bg-green-200 transition-colors duration-300">
+                      <svg
+                        className="w-5 h-5 text-green-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">
+                        Phone Number
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        <a
+                          href="tel:+919717755870"
+                          className="hover:text-green-600 transition-colors duration-300"
+                        >
+                          +91 97177 55870
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Email */}
+                <div className="group p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-100">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-purple-100 rounded-lg group-hover:bg-purple-200 transition-colors duration-300">
+                      <svg
+                        className="w-5 h-5 text-purple-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">
+                        Email Address
+                      </h4>
+                      <p className="text-gray-600 text-sm">
+                        <a
+                          href="mailto:info@digitalinnovation.com"
+                          className="hover:text-purple-600 transition-colors duration-300"
+                        >
+                         info@dgtlinnovations.in
+                        </a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Business Hours */}
+                <div className="group p-4 bg-white/80 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:scale-105 border border-gray-100">
+                  <div className="flex items-start gap-4">
+                    <div className="p-2 bg-orange-100 rounded-lg group-hover:bg-orange-200 transition-colors duration-300">
+                      <svg
+                        className="w-5 h-5 text-orange-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-1">
+                        Business Hours
+                      </h4>
+                      <p className="text-gray-600 text-sm leading-relaxed">
+                        Mon - Fri: 9:30 AM - 6:30 PM
+                        <br />
+                        Sunday: Closed
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <div className="mt-8 text-center">
+                <button
+                  onClick={() => {
+                    const address = "Digital innovations, 1st Floor, Inside of SBI bank, Near Vishwakarma chowk, Nakur, Saharanpur, Uttar Pradesh, 247342, India";
+                    const encodedAddress = encodeURIComponent(address);
+                    window.open(`https://www.google.com/maps/search/?api=1&query=${encodedAddress}`, "_blank");
+                  }}
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+                    ></path>
+                  </svg>
+                  View on Maps
+                </button>
               </div>
             </div>
-
-            {/* Message Field */}
-            <div className="mb-6">
-              <label className="block text-base font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                <span className="text-lg">💬</span>
-                Message
-              </label>
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Write Your Message/Inquiry Here"
-                rows="4"
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-base text-gray-700 bg-gray-50 focus:outline-none focus:ring-4 focus:ring-indigo-200 focus:border-indigo-500 focus:bg-white transition-all duration-300 transform focus:-translate-y-0.5 shadow-sm resize-vertical font-sans"
-              />
-            </div>
-
-            {/* Submit Button */}
-            <div className="text-center">
-              <button
-                type="submit"
-                className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-lg text-base shadow-xl transform transition-all duration-300 hover:from-indigo-700 hover:to-purple-700 hover:-translate-y-1 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-indigo-300 active:transform active:scale-95"
-              >
-                Submit Your Query
-              </button>
-            </div>
-          </form>
+          </div>
         </div>
       </section>
     </div>

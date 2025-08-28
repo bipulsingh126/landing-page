@@ -35,107 +35,104 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="w-full bg-white/95 backdrop-blur-lg fixed top-0 left-0 z-50 shadow-lg border-b border-gray-200/50 transition-all duration-300">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
+    <nav className="w-full bg-white/90 backdrop-blur-xl fixed top-0 left-0 z-50 shadow-2xl border-b border-gray-100/80 transition-all duration-500 hover:bg-white/95">
+      <div className="max-w-7xl mx-auto flex items-center px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
         {/* Logo */}
-        <Link to="/">
-          <img
-            className="h-10 w-28 sm:h-12 sm:w-36 object-contain hover:scale-105 transition-transform duration-300 cursor-pointer"
-            src={logo}
-            alt="logo"
-          />
-        </Link>
+        <div className="flex items-center">
+          <Link to="/">
+            <img
+              className="h-12 w-32 mt-[10px] sm:mt-0 sm:h-14 sm:w-40 object-contain mx-2  cursor-pointer  "
+              src={logo}
+              alt="logo"
+            />
+          </Link>
+        </div>
 
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex space-x-8 text-sm font-semibold">
-          <li>
-            <Link
-              to="/services"
-              onClick={() => setIsMenuOpen(false)}
-              className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
-            >
-              Services
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/portfolio"
-              onClick={() => setIsMenuOpen(false)}
-              className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
-            >
-              Portfolio
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/contact"
-              onClick={() => setIsMenuOpen(false)}
-              className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-2 rounded-full hover:bg-blue-50 group"
-            >
-              Contact Us
-              <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-            </Link>
-          </li>
-        </ul>
+        {/* Desktop Menu - Centered */}
+        <div className="hidden lg:flex flex-1 justify-center">
+          <ul className="flex space-x-8 xl:space-x-12 text-sm font-semibold">
+            <li>
+              <Link
+                to="/services"
+                onClick={() => setIsMenuOpen(false)}
+                className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 group transform hover:scale-105"
+              >
+                Services
+                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/portfolio"
+                onClick={() => setIsMenuOpen(false)}
+                className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 group transform hover:scale-105"
+              >
+                Portfolio
+                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 group transform hover:scale-105"
+              >
+                Contact Us
+                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+              </Link>
+            </li>
+          </ul>
+        </div>
 
         {/* CTA Button */}
         <div className="hidden lg:block">
           <Link
             to="/contact"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-semibold text-sm hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white px-8 py-3 rounded-full font-bold text-sm hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transform hover:scale-110 hover:-translate-y-1 transition-all duration-500 shadow-xl hover:shadow-2xl ring-2 ring-blue-200 hover:ring-blue-300"
           >
             Get Started
           </Link>
         </div>
 
         {/* Mobile Menu Button */}
-        <button
-          onClick={toggleMenu}
-          className="lg:hidden flex flex-col justify-center items-center space-y-1 p-2 rounded-md hover:bg-gray-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
-          aria-label="Toggle menu"
-          aria-expanded={isMenuOpen}
-        >
-          <span
-            className={`block w-6 h-0.5 bg-[#1a355e] transition-all duration-300 origin-center ${
-              isMenuOpen ? "rotate-45 translate-y-1.5" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-[#1a355e] transition-all duration-300 ${
-              isMenuOpen ? "opacity-0" : ""
-            }`}
-          ></span>
-          <span
-            className={`block w-6 h-0.5 bg-[#1a355e] transition-all duration-300 origin-center ${
-              isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
-            }`}
-          ></span>
-        </button>
-
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-            onClick={() => setIsMenuOpen(false)}
-            aria-hidden="true"
-          ></div>
-        )}
+        <div className="flex justify-end lg:hidden ml-auto">
+          <button
+            onClick={toggleMenu}
+            className="flex flex-col justify-center items-center space-y-1 p-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transform hover:scale-110"
+            aria-label="Toggle menu"
+            aria-expanded={isMenuOpen}
+          >
+            <span
+              className={`block w-6 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 origin-center rounded-full ${
+                isMenuOpen ? "rotate-45 translate-y-1.5" : ""
+              }`}
+            ></span>
+            <span
+              className={`block w-6 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 rounded-full ${
+                isMenuOpen ? "opacity-0" : ""
+              }`}
+            ></span>
+            <span
+              className={`block w-6 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 origin-center rounded-full ${
+                isMenuOpen ? "-rotate-45 -translate-y-1.5" : ""
+              }`}
+            ></span>
+          </button>
+        </div>
 
         {/* Mobile Menu */}
         <div
-          className={`absolute top-full left-0 w-full bg-white border-b border-gray-300 shadow-xl transition-all duration-300 ease-in-out lg:hidden z-50 ${
+          className={`absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-2xl transition-all duration-500 ease-in-out lg:hidden z-50 ${
             isMenuOpen
               ? "opacity-100 visible translate-y-0"
-              : "opacity-0 invisible -translate-y-4 pointer-events-none"
+              : "opacity-0 invisible -translate-y-6 pointer-events-none"
           }`}
         >
-          <ul className="flex flex-col space-y-0 text-sm text-[#1a355e] font-normal py-2">
+          <ul className="flex flex-col space-y-1 text-sm text-gray-700 font-medium py-4">
             <li>
               <Link
                 to="/services"
-                className="block px-6 py-4 transition-all duration-200 ease-in-out hover:text-blue-600 hover:bg-gray-50 active:bg-gray-100"
+                className="block px-6 py-4 mx-2 rounded-xl transition-all duration-300 ease-in-out hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 active:bg-blue-100 transform hover:translate-x-2 hover:scale-105"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Services
@@ -144,7 +141,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/portfolio"
-                className="block px-6 py-4 transition-all duration-200 ease-in-out hover:text-blue-600 hover:bg-gray-50 active:bg-gray-100"
+                className="block px-6 py-4 mx-2 rounded-xl transition-all duration-300 ease-in-out hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 active:bg-blue-100 transform hover:translate-x-2 hover:scale-105"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Portfolio
@@ -153,7 +150,7 @@ const Navbar = () => {
             <li>
               <Link
                 to="/contact"
-                className="block px-6 py-4 transition-all duration-200 ease-in-out hover:text-blue-600 hover:bg-gray-50 active:bg-gray-100"
+                className="block px-6 py-4 mx-2 rounded-xl transition-all duration-300 ease-in-out hover:text-blue-600 hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 active:bg-blue-100 transform hover:translate-x-2 hover:scale-105"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Contact Us

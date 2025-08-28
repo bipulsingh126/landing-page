@@ -10,48 +10,48 @@ const Feature1 = () => {
       description:
         "Michket is a comprehensive e-commerce platform we custom-built for a gifting company. This feature-rich solution empowers them to manage their entire online sales operation seamlessly.",
       images: [
-        "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1542751110-97427bbecf20?w=600&h=400&fit=crop",
-        "https://imgs.search.brave.com/BiyaX_RM_sZtDsyGGnc1_bvwSvpZRi9vf4cDOY3Rd-g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/c2h1dHRlcnN0b2Nr/LmNvbS9pbWFnZS1w/aG90by9vbmxpbmUt/c3RvcmUtbGFwdG9w/LXNtYWxsLXNob3Bw/aW5nLTI2MG53LTIz/NTIyMDY5NzcuanBn",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168140753938.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168140752738.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168140752061.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168140751051.png",
       ],
       technologies: ["Php", "HTML & CSS", "JS", "MY SQL"],
     },
     {
-      title: "TechFlow: Modern Business Management System",
+      title: "Real Estate",
       description:
-        "A comprehensive business management platform designed to streamline operations, enhance productivity, and provide real-time analytics for growing businesses.",
+        " Develop a mobile app allowing property owners to list their properties and users to browse, filter, and book them. Features: Property Listing: Owners can upload property details, photos, and pricing information.",
       images: [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?w=600&h=400&fit=crop",
-        "https://imgs.search.brave.com/w5Lfs7-Tj0bKS1h6qET9GBS0lDH0odqQwIiyLC2LOYU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzA1LzAzLzEzLzk2/LzM2MF9GXzUwMzEz/OTY2Ml8zb2JTeW1n/anBHODRCRWJGTkJ5/UDJnaWpXWE5YRXV4/ZC5qcGc",
-        "https://imgs.search.brave.com/TDuSfJVQPP2GSvZ1trX7o2qyLw5HAJz_XAriPIa3Ifw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1waG90/by9idXNpbmVzc21h/bi1zaG93LXNtYXJ0/LWhvbWUtbW9kZWwt/YnVpbGRpbmctd2l0/aC1yZXNwb25zaWJs/ZS1lbnZpcm9ubWVu/dF8yODYyOS0xMTI0/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDA",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168092333127.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168092333396.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168092336211.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168092336199.png",
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Express"],
+      technologies: ["flutter", "Laravel", "Php"],
     },
     {
-      title: "HealthCare Pro: Digital Health Platform",
+      title: "Travel Bed",
       description:
-        "An innovative healthcare management system that connects patients with healthcare providers, enabling seamless appointment scheduling and health monitoring.",
+        "Developed a B2B hotel booking platform for travel agents to access and book hotels for their clients. Features: Admin Login: Admin can manage system settings, user accounts, and hotel listings. Travel Agent Login: Travel agents can access hotel listings, compare prices, and book rooms on behalf of their clients. Hotel Listing Integration.",
       images: [
-        "https://images.unsplash.com/photo-1504813184591-01572f98c85f?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=600&h=400&fit=crop",
-        "https://imgs.search.brave.com/KRH2akqMyKY9keF_kxkRHwWQbM0SPlUPf5qA3tFd7EU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMjA2/MjAuanBn",
-        "https://imgs.search.brave.com/PZWEv1NWR0oWHdKym2mY_ZJeKtTARVNJY0ElB3CL7vw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMTM2/OTM0LmpwZw",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168778982643.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168778985246.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168778989409.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168778987338.png",
       ],
-      technologies: ["Vue.js", "Python", "PostgreSQL", "AWS"],
+      technologies: ["HTML & CSS", "JS", "Php", "Laravel", "MYSQL"],
     },
     {
-      title: "EduLearn: Interactive Learning Platform",
+      title: "Food Delivery mobile app",
       description:
-        "A modern educational platform that revolutionizes online learning with interactive courses, real-time collaboration, and advanced progress tracking.",
+        "This is a Food Delivery Mobile App created by Digital Innovations team. The app has been created on Flutter for Android and IOS platform backed is on Php, Laravel.  This app has been created for a startup, it provide login to customers and chef. Chef can list their daily dish and menu, customer can place the order",
       images: [
-        "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop",
-        "https://imgs.search.brave.com/rGHRZbc4b9wR7AvG7qy8OALCnMGn5l8YbBiHkbeyYcE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAzLzcxLzU4Lzk5/LzM2MF9GXzM3MTU4/OTkwOV9KOFZDdTI1/cW9COUczd09Pc2k4/bkpxNFZxV2l3VUxZ/ZC5qcGc",
-        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=600&h=400&fit=crop",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=600&h=400&fit=crop",
+       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Final%20Mockup.png",
+       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Login.png",
+       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Product.png",
+       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Delevery.png"
       ],
-      technologies: ["React Js", "Firebase", "TypeScript", "Material UI"],
+      technologies: ["Flutter", "Php", "Laravel", "MYSQL"],
     },
   ];
 
@@ -149,6 +149,64 @@ const Feature1 = () => {
                 ))}
               </div>
             </div>
+            <div className="flex items-center justify-between mt-12 px-4">
+          {/* Previous Button */}
+          <button
+            onClick={prevProject}
+            className="group relative flex items-center px-6 py-3 text-white font-semibold text-sm rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <svg
+              className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            <span>Previous</span>
+          </button>
+
+          {/* Dots Indicator */}
+          <div className="flex space-x-2">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToProject(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  index === currentProject
+                    ? "bg-blue-600 shadow-md transform scale-125"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Next Button */}
+          <button
+            onClick={nextProject}
+            className="group relative flex items-center px-6 py-3 text-white font-semibold text-sm rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            <span>Next</span>
+            <svg
+              className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </button>
+        </div>
 
             {/* Learn More Button */}
             <div className="pt-6">
@@ -182,82 +240,7 @@ const Feature1 = () => {
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-16">
-          {/* Previous Button */}
-          <button
-            onClick={prevProject}
-            className="group relative flex items-center px-4 py-2 text-white font-medium text-sm rounded-xl bg-gradient-to-r from-purple-600 via-blue-600 to-blue-700 hover:from-purple-700 hover:via-blue-700 hover:to-blue-800 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm border border-white/20 overflow-hidden"
-          >
-            {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 via-blue-600/20 to-blue-700/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            {/* Glow effect */}
-            <div className="absolute inset-0 rounded-xl blur-lg bg-gradient-to-r from-purple-600/30 via-blue-600/30 to-blue-700/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-
-            <svg
-              className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            <span className="relative z-10">Previous</span>
-
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
-          </button>
-
-          {/* Dots Indicator */}
-          <div className="flex space-x-3">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToProject(index)}
-                className={`w-4 h-4 rounded-full transition-all duration-300 ${
-                  index === currentProject
-                    ? "bg-blue-600 shadow-lg transform scale-125"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={nextProject}
-            className="group relative flex items-center px-4 py-2 text-white font-medium text-sm rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm border border-white/20 overflow-hidden"
-          >
-            {/* Animated background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-purple-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-            {/* Glow effect */}
-            <div className="absolute inset-0 rounded-xl blur-lg bg-gradient-to-r from-blue-600/30 via-indigo-600/30 to-purple-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-
-            <span className="relative z-10">Next</span>
-            <svg
-              className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2.5}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 -skew-x-12 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-pulse transition-opacity duration-700"></div>
-          </button>
-        </div>
+       
       </div>
     </section>
   );

@@ -1,0 +1,318 @@
+/* 3D Animations and Effects */
+
+/* Perspective container */
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+/* 3D Floating Animation */
+@keyframes float3d {
+  0%, 100% {
+    transform: rotateX(45deg) rotateY(45deg) translateY(0px) translateZ(0px);
+  }
+  25% {
+    transform: rotateX(60deg) rotateY(60deg) translateY(-10px) translateZ(10px);
+  }
+  50% {
+    transform: rotateX(30deg) rotateY(30deg) translateY(-20px) translateZ(20px);
+  }
+  75% {
+    transform: rotateX(50deg) rotateY(50deg) translateY(-10px) translateZ(10px);
+  }
+}
+
+/* 3D Rotation Animation */
+@keyframes rotate3d {
+  0% {
+    transform: rotateX(45deg) rotateY(45deg) rotateZ(0deg);
+  }
+  33% {
+    transform: rotateX(60deg) rotateY(120deg) rotateZ(120deg);
+  }
+  66% {
+    transform: rotateX(30deg) rotateY(240deg) rotateZ(240deg);
+  }
+  100% {
+    transform: rotateX(45deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+/* Enhanced 3D Box Shadows */
+.floating-3d-box {
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 20px 60px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transform-style: preserve-3d;
+}
+
+.floating-3d-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* 3D Transform GPU Acceleration */
+.transform-gpu {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* 3D Hover Effects */
+.transform-gpu:hover {
+  transform-style: preserve-3d;
+}
+
+/* Enhanced Glassmorphism */
+.glass-3d {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* 3D Button Effects */
+.btn-3d {
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.btn-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  border-radius: inherit;
+  transform: translateZ(-1px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-3d:hover::before {
+  opacity: 1;
+}
+
+/* 3D Text Shadow Effects */
+.text-3d {
+  text-shadow: 
+    0 1px 0 rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* 3D Card Tilt Effect */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+.card-3d:hover {
+  transform: rotateX(5deg) rotateY(5deg) translateZ(10px);
+}
+
+/* Parallax 3D Layers */
+.parallax-3d {
+  transform-style: preserve-3d;
+}
+
+.parallax-layer-1 {
+  transform: translateZ(10px);
+}
+
+.parallax-layer-2 {
+  transform: translateZ(20px);
+}
+
+.parallax-layer-3 {
+  transform: translateZ(30px);
+}
+
+/* 3D Glow Effects */
+.glow-3d {
+  box-shadow: 
+    0 0 20px rgba(59, 130, 246, 0.3),
+    0 0 40px rgba(147, 51, 234, 0.2),
+    0 0 60px rgba(6, 182, 212, 0.1);
+}
+
+/* 3D Morphing Animation */
+@keyframes morph3d {
+  0%, 100% {
+    border-radius: 20px;
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    border-radius: 30px 10px;
+    transform: rotateX(5deg) rotateY(5deg);
+  }
+  50% {
+    border-radius: 10px 30px;
+    transform: rotateX(-5deg) rotateY(-5deg);
+  }
+  75% {
+    border-radius: 25px 15px;
+    transform: rotateX(3deg) rotateY(3deg);
+  }
+}
+
+.morph-3d {
+  animation: morph3d 8s ease-in-out infinite;
+}
+
+/* 3D Particle Effects */
+@keyframes particle3d {
+  0% {
+    transform: translateY(0px) translateX(0px) rotateZ(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50px) translateX(20px) rotateZ(180deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100px) translateX(-20px) rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+.particle-3d {
+  animation: particle3d 4s ease-out infinite;
+}
+
+/* Responsive 3D Effects */
+@media (max-width: 768px) {
+  .floating-3d-box {
+    transform: scale(0.8) !important;
+  }
+  
+  .transform-gpu {
+    transform: none !important;
+  }
+  
+  .perspective-1000 {
+    perspective: 500px;
+  }
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* 3D Loading Animation */
+@keyframes spin3d {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+  }
+}
+
+.loading-3d {
+  animation: spin3d 2s linear infinite;
+}
+
+/* 3D Service Box Animation */
+@keyframes serviceBox3d {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1);
+    opacity: 1;
+  }
+  20% {
+    transform: rotateX(45deg) rotateY(90deg) translateZ(15px) scale(1.1);
+    opacity: 0.9;
+  }
+  40% {
+    transform: rotateX(90deg) rotateY(180deg) translateZ(25px) scale(1.2);
+    opacity: 0.7;
+  }
+  60% {
+    transform: rotateX(180deg) rotateY(270deg) translateZ(30px) scale(1.1);
+    opacity: 0.8;
+  }
+  80% {
+    transform: rotateX(270deg) rotateY(360deg) translateZ(15px) scale(1.05);
+    opacity: 0.9;
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(450deg) translateZ(0px) scale(1);
+    opacity: 1;
+  }
+}
+
+.service-box-3d {
+  animation: serviceBox3d 7s ease-in-out infinite;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/* 3D Cube Faces */
+.cube-3d {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.cube-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 12px;
+}
+
+.cube-front {
+  transform: translateZ(25px);
+}
+
+.cube-back {
+  transform: rotateY(180deg) translateZ(25px);
+}
+
+.cube-right {
+  transform: rotateY(90deg) translateZ(25px);
+}
+
+.cube-left {
+  transform: rotateY(-90deg) translateZ(25px);
+}
+
+.cube-top {
+  transform: rotateX(90deg) translateZ(25px);
+}
+
+.cube-bottom {
+  transform: rotateX(-90deg) translateZ(25px);
+}
+
+/* Service Box Container Animation */
+@keyframes serviceContainer3d {
+  0%, 100% {
+    transform: translateY(0px) rotateZ(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotateZ(2deg);
+  }
+  66% {
+    transform: translateY(-5px) rotateZ(-1deg);
+  }
+}

@@ -8,6 +8,13 @@ const Portfolio = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
+
+  // Function to handle project selection and scroll to top
+  const handleProjectSelect = (project) => {
+    setSelectedProject(project);
+    // Scroll to top when project detail opens
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const [isLoaded, setIsLoaded] = useState(false);
   const [animatingFilter, setAnimatingFilter] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
@@ -30,7 +37,7 @@ const Portfolio = () => {
   };
 
   const handleReload = () => {
-    setReloadKey(prev => prev + 1);
+    setReloadKey((prev) => prev + 1);
     setIsLoaded(false);
   };
 
@@ -50,7 +57,7 @@ const Portfolio = () => {
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168140753938.png",
       description:
-        "Michket is a comprehensive e-commerce platform we custom-built for a gifting company. This feature-rich solution empowers them to manage their entire online sales operation seamlessly.",
+        "Michket is a comprehensive e-commerce platform we custom-built for a gifting company. This feature-rich solution empowers them to manage their entire online sales operation seamlessly. The platform was developed to streamline the online order process. Our team has developed backend CRM having store data automation. This is a customised developed platform having product inventory, logistic intigration, product customisation on user side, income - expense tracking and business reports. .",
       technologies: ["Php", "HTML&CSS", "JS", "MY SQL"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168140752738.png",
@@ -64,7 +71,8 @@ const Portfolio = () => {
       category: "E-commerce",
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168125843069.png",
-      description: "E-Auction Ecommerce Platform",
+      description:
+        "Developed an online auction platform where celebrities can list their unique items. Users can browse, bid on these items, and the highest bidder wins the auction.",
       technologies: ["React", "Node.js", "MongoDB", "Express"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168125843882.png",
@@ -79,7 +87,7 @@ const Portfolio = () => {
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168073711686.png",
       description:
-        "This is an Iot Project where we had developed the backend software and mobile apps based on OCPP protocol. ",
+        "This is an Iot Project where we had developed the backend software and mobile apps based on OCPP protocol. The software communicates with the electric vehicle chargers. System works on the RTS , real time data streaming. ",
       technologies: ["java(Spring Boot), Kotlin, Swfit"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168073715797.png",
@@ -94,7 +102,7 @@ const Portfolio = () => {
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168778982643.png",
       description:
-        "Developed a B2B hotel booking platform for travel agents to access and book hotels for their clients. Features: Admin Login: Admin can manage system settings, user accounts, and hotel listings.",
+        "Developed a B2B hotel booking platform for travel agents to access and book hotels for their clients. Features: Admin Login: Admin can manage system settings, user accounts, and hotel listings. Travel Agent Login: Travel agents can access hotel listings, compare prices, and book rooms on behalf of their clients. Hotel Listing Integration:.",
       technologies: ["Vue.js", "Node.js", "PostgreSQL", "Docker"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168778985246.png",
@@ -108,7 +116,8 @@ const Portfolio = () => {
       category: "SASS",
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168799405311.png",
-      description: "Develop a SAAS platform for a fintech startup offering various financial services. Users can register and book specific services.",
+      description:
+        "Develop a SAAS platform for a fintech startup offering various financial services. Users can register and book specific services. Features: User Registration and Management: Users can register, manage their profiles, and access relevant services.",
       technologies: ["php", "Html", "CSS", "JS"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/17168799408405.png",
@@ -123,7 +132,7 @@ const Portfolio = () => {
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717066131.Group%201000003684.png",
       description:
-        "Building Lasting Connections with Haldiban Matrimonial Platform",
+        "Haldiban is a user-friendly matrimonial platform designed to assist young people in finding their perfect match. The platform allows individuals to register, create detailed profiles, and explore potential partners based on compatibility factors. ",
       technologies: ["Php", "Laravel", "MySQL"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717066131.Group%201000003679.png",
@@ -138,7 +147,7 @@ const Portfolio = () => {
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738741664.Final%20Mockup.png",
       description:
-        "CRM System for Customer Service Request , Warranty Tracking",
+        "Client was looking for a custom CRM System for their refrigerator service business. They were facing challenge in managing data for multiple customer queries, product warranty, product inventory and job allocation to the service staff. So we come up with a customised CRM System to automate their business data.",
       technologies: ["React", "Node.js", "MongoDB", "Express.js"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738741664.Banner%2001.png",
@@ -152,7 +161,8 @@ const Portfolio = () => {
       category: "Mobile Apps",
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Final%20Mockup.png",
-      description: "Food ordering and delivery app",
+      description:
+        "This is a Food Delivery Mobile App created by Digital Innovations team. The app has been created on Flutter for Android and IOS platform backed is on Php, Laravel.  This app has been created for a startup, it provide login to customers and chef. Chef can list their daily dish and menu, customer can place the order.",
       technologies: ["flutter", "Php", "Laravel", "MySQL"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Product.png",
@@ -167,7 +177,7 @@ const Portfolio = () => {
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1737137839.Mockup%20Screen%20(2).png",
       description:
-        "Ai Chatboat Development for Student Data By Digital Innovations ",
+        " Ai Chatboat Development for student data. Digital Innovations has developed this Ai based chatboat, for one our client. The purpose of this development was to reduce the manual support. The solution was developed to automate the student queries.  ",
       technologies: ["React", "Python", "Django", "PostgreSQL"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1737137839.Mockup%20Screen%20(2).png",
@@ -181,7 +191,8 @@ const Portfolio = () => {
       category: "Mobile Apps",
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717156339.Group%201000003613.png",
-      description: "Tahvo is a sophisticated e-commerce platform designed to showcase and sell Tahvo India's collection of men's apparel.",
+      description:
+        "Tahvo is a sophisticated e-commerce platform designed to showcase and sell Tahvo India's collection of men's apparel. The user-friendly platform provides a seamless online shopping experience for customers seeking stylish and high-quality clothing.",
       technologies: ["Shopify", "React", "Node.js", "MongoDB", "Express"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717156339.Group%201000003614.png",
@@ -195,7 +206,8 @@ const Portfolio = () => {
       category: "Web Apps",
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717157598.Group%201000003619.png",
-      description: "Advanced analytics and reporting tool",
+      description:
+        "Kingdom Property is a user-friendly platform designed to revolutionize the real estate sales process for Kingdom Property. It caters to both potential buyers and Kingdom Property's agents.",
       technologies: ["CI Framework", "React", "Node.js", "MongoDB", "Express"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717157598.Group%201000003619.png",
@@ -209,7 +221,8 @@ const Portfolio = () => {
       category: "SASS",
       image:
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717068964.Group%201000003686.png",
-      description: "Develop a SAAS platform where immigration consultants can register, manage client data, and access business tools.",
+      description:
+        "Develop a SAAS platform where immigration consultants can register, manage client data, and access business tools, Consultants can register, manage profiles, and choose membership plans.",
       technologies: ["Gatsby", "GraphQL", "Contentful", "Netlify"],
       additionalImages: [
         "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1717068964.Group%201000003689.png",
@@ -229,7 +242,11 @@ const Portfolio = () => {
     return (
       <ProjectDetail
         project={selectedProject}
-        onBack={() => setSelectedProject(null)}
+        onBack={() => {
+          setSelectedProject(null);
+          // Scroll to top when going back to portfolio
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }}
       />
     );
   }
@@ -246,15 +263,25 @@ const Portfolio = () => {
             <button
               onClick={handleReload}
               className={`absolute top-4 right-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 group ${
-                isLoaded ? 'opacity-100 rotate-0' : 'opacity-0 rotate-180'
+                isLoaded ? "opacity-100 rotate-0" : "opacity-0 rotate-180"
               }`}
-              style={{ transitionDelay: '1.5s' }}
+              style={{ transitionDelay: "1.5s" }}
             >
-              <svg className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              <svg
+                className="w-5 h-5 group-hover:rotate-180 transition-transform duration-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
               </svg>
             </button>
-            
+
             <div
               className={`flex items-center justify-center mb-6 transition-all duration-1000 ${
                 isLoaded
@@ -289,20 +316,20 @@ const Portfolio = () => {
             >
               "Elevating Your Brand With A Touch Of Excellence"
             </h2>
-            
+
             {/* Animated particles */}
             <div className="absolute inset-0 pointer-events-none">
               {[...Array(6)].map((_, i) => (
                 <div
                   key={i}
                   className={`absolute w-2 h-2 bg-blue-400 rounded-full animate-pulse ${
-                    isLoaded ? 'opacity-30' : 'opacity-0'
+                    isLoaded ? "opacity-30" : "opacity-0"
                   }`}
                   style={{
                     left: `${20 + i * 12}%`,
                     top: `${30 + (i % 2) * 40}%`,
                     animationDelay: `${i * 0.5}s`,
-                    transitionDelay: `${1000 + i * 200}ms`
+                    transitionDelay: `${1000 + i * 200}ms`,
                   }}
                 />
               ))}
@@ -344,6 +371,7 @@ const Portfolio = () => {
             {filteredItems.map((item, index) => (
               <div
                 key={item.id}
+                onClick={() => handleProjectSelect(item)}
                 className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group cursor-pointer border border-gray-100 hover:border-blue-200 ${
                   isLoaded
                     ? "opacity-100 translate-y-0"
@@ -366,12 +394,9 @@ const Portfolio = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
                     <div className="text-center space-y-3">
-                      <button
-                        onClick={() => setSelectedProject(item)}
-                        className="bg-white text-blue-600 px-6 py-3 rounded-full font-medium transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-lg hover:shadow-xl"
-                      >
+                      <div className="bg-white text-blue-600 px-6 py-3 rounded-full font-medium transform -translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-lg">
                         View Project
-                      </button>
+                      </div>
                       <div className="flex justify-center space-x-2">
                         <span className="w-2 h-2 bg-white rounded-full opacity-60"></span>
                         <span className="w-2 h-2 bg-white rounded-full opacity-60"></span>

@@ -12,7 +12,7 @@ const Footer = () => {
           href="mailto:Info@DgtlInnovation.Com"
           className="text-gray-800 font-medium hover:text-blue-600 transition-colors duration-200"
         >
-          Info@DgtlInnovation.Com
+          info@dgtlinnovations.in
         </a>
       </div>
 
