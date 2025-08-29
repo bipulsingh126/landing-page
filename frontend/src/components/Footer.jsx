@@ -15,6 +15,24 @@ const Footer = () => {
           info@dgtlinnovations.in
         </a>
       </div>
+      
+      {/* Legal Links Section */}
+      <div className="bg-gray-50 py-4 px-4 text-center border-t border-gray-200">
+        <div className="flex justify-center space-x-6">
+          <a
+            href="/terms-conditions"
+            className="text-gray-600 hover:text-blue-600 text-sm transition-colors duration-200"
+          >
+            Disclaimer
+          </a>
+          <a
+            href="/privacy-policy"
+            className="text-gray-600 hover:text-blue-600 text-sm transition-colors duration-200"
+          >
+            Privacy Policy
+          </a>
+        </div>
+      </div>
 
       {/* Copyright Section */}
       <div className="bg-blue-900 py-4 px-4 text-center">

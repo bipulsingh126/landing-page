@@ -5,16 +5,22 @@ import Services from "./components/Services";
 import Feature4 from "./components/Feature4";
 import WhatsApp from "./components/WhatsApp";
 import Thanku from "./components/Thanku";
+import PrivacyPolicy from "./components/PrivacyPolicy";
+import Disclaimer from "./components/Disclaimer";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/contact" element={<Feature4 />} />
         <Route path="/thankyou" element={<Thanku />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-conditions" element={<Disclaimer />} />
       </Routes>
       <WhatsApp />
     </>

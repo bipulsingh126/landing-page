@@ -12,6 +12,7 @@ const Feature4 = () => {
     phone: "",
     service: "",
     message: "",
+    acceptTerms: false,
   });
 
   // Auto-fill service from URL parameters
@@ -31,10 +32,10 @@ const Feature4 = () => {
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'config_error', 'duplicate', 'template_error'
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -50,7 +51,7 @@ const Feature4 = () => {
       return;
     }
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.acceptTerms) {
       setSubmitStatus("error");
       setIsSubmitting(false);
       return;
@@ -182,6 +183,7 @@ const Feature4 = () => {
         phone: "",
         service: "",
         message: "",
+        acceptTerms: false,
       });
       
     } catch (error) {
@@ -374,11 +376,65 @@ const Feature4 = () => {
                   </div>
                 </div>
 
+                {/* Terms and Conditions Checkbox */}
+                <div className="mt-4">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <div className="relative">
+                      <input
+                        type="checkbox"
+                        name="acceptTerms"
+                        checked={formData.acceptTerms}
+                        onChange={handleChange}
+                        required
+                        className="sr-only"
+                      />
+                      <div className={`w-5 h-5 rounded border-2 transition-all duration-300 flex items-center justify-center ${
+                        formData.acceptTerms
+                          ? 'bg-blue-500 border-blue-500'
+                          : 'bg-white border-gray-300 group-hover:border-blue-400'
+                      }`}>
+                        {formData.acceptTerms ? (
+                          <svg
+                            className="w-3 h-3 text-white"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={3}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                        ) : null}
+                      </div>
+                    </div>
+                    <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      I agree to the{' '}
+                      <a
+                        href="/terms-conditions"
+                        className="text-blue-600 hover:text-blue-700 underline font-medium transition-colors duration-300"
+                      >
+                        Terms & Conditions
+                      </a>
+                      {' '}and{' '}
+                      <a
+                        href="/privacy-policy"
+                        className="text-blue-600 hover:text-blue-700 underline font-medium transition-colors duration-300"
+                      >
+                        Privacy Policy
+                      </a>
+                      *
+                    </div>
+                  </label>
+                </div>
+
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !formData.acceptTerms}
                   className={`group relative w-full mt-4 sm:mt-6 px-4 py-2 sm:py-3 md:py-3.5 text-white font-semibold rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 transition-all duration-700 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 hover:scale-110 backdrop-blur-sm border border-white/20 overflow-hidden text-xs sm:text-sm md:text-base ${
-                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                    isSubmitting || !formData.acceptTerms ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >
                   {/* Animated background */}
