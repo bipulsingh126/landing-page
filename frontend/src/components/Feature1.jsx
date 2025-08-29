@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Feature1 = () => {
+  const navigate = useNavigate();
   const [currentProject, setCurrentProject] = useState(0);
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -190,7 +192,13 @@ const Feature1 = () => {
 
             {/* Learn More Button */}
             <div className="pt-6">
-              <button className="group relative inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm border border-white/20 overflow-hidden">
+              <button 
+                onClick={() => {
+                  navigate('/portfolio');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="group relative inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded-xl bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-700 hover:via-teal-700 hover:to-cyan-700 transition-all duration-500 shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 backdrop-blur-sm border border-white/20 overflow-hidden"
+              >
                 {/* Animated background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-600/20 via-teal-600/20 to-cyan-600/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
