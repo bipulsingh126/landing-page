@@ -50,35 +50,35 @@ const Navbar = () => {
 
         {/* Desktop Menu - Centered */}
         <div className="hidden lg:flex flex-1 justify-center">
-          <ul className="flex space-x-8 xl:space-x-12 text-sm font-semibold">
+          <ul className="flex space-x-8 xl:space-x-12 text-base font-bold tracking-wide">
             <li>
               <Link
                 to="/services"
                 onClick={() => setIsMenuOpen(false)}
-                className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 group transform hover:scale-105"
+                className="relative text-gray-800 hover:text-blue-700 transition-all duration-400 ease-out px-5 py-3 rounded-xl hover:bg-blue-50/80 group transform hover:scale-105 hover:shadow-lg"
               >
                 Services
-                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-blue-600 to-blue-700 transition-all duration-400 group-hover:w-full rounded-full"></span>
               </Link>
             </li>
             <li>
               <Link
                 to="/portfolio"
                 onClick={() => setIsMenuOpen(false)}
-                className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 group transform hover:scale-105"
+                className="relative text-gray-800 hover:text-purple-700 transition-all duration-400 ease-out px-5 py-3 rounded-xl hover:bg-purple-50/80 group transform hover:scale-105 hover:shadow-lg"
               >
                 Portfolio
-                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-purple-600 to-purple-700 transition-all duration-400 group-hover:w-full rounded-full"></span>
               </Link>
             </li>
             <li>
               <Link
                 to="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="relative text-gray-700 hover:text-blue-600 transition-all duration-300 ease-in-out px-4 py-3 rounded-xl hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 group transform hover:scale-105"
+                className="relative text-gray-800 hover:text-green-700 transition-all duration-400 ease-out px-5 py-3 rounded-xl hover:bg-green-50/80 group transform hover:scale-105 hover:shadow-lg"
               >
                 Contact Us
-                <span className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-indigo-600 transition-all duration-300 group-hover:w-3/4 rounded-full"></span>
+                <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-green-600 to-green-700 transition-all duration-400 group-hover:w-full rounded-full"></span>
               </Link>
             </li>
           </ul>

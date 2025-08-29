@@ -58,10 +58,18 @@ const Feature4 = () => {
 
     try {
       const serviceId = "service_gu5imno";
-      const templateId = "template_syc4oxw";
+      const adminTemplateId = "template_syc4oxw";
+      const userTemplateId = "template_rmo9k11";
       const publicKey = "3d4M0E3ZbFPgVh_Ra";
 
-      const templateParams = {
+      console.log("=== EMAIL CONFIGURATION ===");
+      console.log("Service ID:", serviceId);
+      console.log("Admin Template ID:", adminTemplateId);
+      console.log("User Template ID:", userTemplateId);
+      console.log("Public Key:", publicKey);
+
+      // Template parameters for admin notification
+      const adminTemplateParams = {
         from_name: formData.name,
         from_email: formData.email,
         phone: formData.phone,
@@ -71,12 +79,95 @@ const Feature4 = () => {
         reply_to: formData.email,
       };
 
-      await emailjs.send(
+      // Template parameters for user thank you email
+      const userTemplateParams = {
+        user_name: formData.name,
+        service_requested: formData.service,
+        company_name: "Digital Innovations",
+        support_email: "info@dgtlinnovations.in",
+        email: formData.email, // This matches your template parameter
+      };
+
+      console.log("=== TEMPLATE PARAMETERS ===");
+      console.log("Admin params:", adminTemplateParams);
+      console.log("User params:", userTemplateParams);
+
+      // Send admin notification email
+      console.log("=== SENDING ADMIN EMAIL ===");
+      const adminResponse = await emailjs.send(
         serviceId,
-        templateId,
-        templateParams,
+        adminTemplateId,
+        adminTemplateParams,
         publicKey
       );
+      console.log("Admin email response:", adminResponse);
+
+      // Send thank you email to user
+      console.log("=== SENDING USER THANK YOU EMAIL ===");
+      try {
+        const userResponse = await emailjs.send(
+          serviceId,
+          userTemplateId,
+          userTemplateParams,
+          publicKey
+        );
+        console.log("User email response:", userResponse);
+        console.log("Thank you email sent to user successfully");
+      } catch (userEmailError) {
+        console.error("=== USER EMAIL ERROR ===");
+        console.error("Error details:", userEmailError);
+        console.error("Error status:", userEmailError.status);
+        console.error("Error text:", userEmailError.text);
+        
+        // Check specific error types and provide solutions
+        if (userEmailError.status === 400) {
+          console.error("❌ Template variables might be incorrect for user email");
+          console.error("📝 Required variables in template_rmo9k11:");
+          console.error("   - {{user_name}}");
+          console.error("   - {{service_requested}}");
+          console.error("   - {{company_name}}");
+          console.error("   - {{support_email}}");
+          console.error("   - {{email}}");
+        } else if (userEmailError.status === 412) {
+          console.error("❌ EmailJS configuration error for user template");
+          console.error("📝 Possible issues:");
+          console.error("   - Template ID 'template_rmo9k11' doesn't exist");
+          console.error("   - Service ID or Public Key is incorrect");
+          console.error("   - Template is not published/active");
+        } else if (userEmailError.status === 404) {
+          console.error("❌ Template 'template_rmo9k11' not found");
+          console.error("📝 Please create this template in your EmailJS dashboard");
+        } else if (userEmailError.status === 422) {
+          console.error("❌ Recipients address is empty - EmailJS template issue");
+          console.error("📝 Your EmailJS template needs to specify recipient:");
+          console.error("   - In EmailJS template settings, set 'To Email' to: {{email}}");
+          console.error("   - Make sure the 'email' parameter is configured as recipient");
+        }
+        
+        // Try fallback: send a simple notification using admin template
+        console.log("🔄 Attempting fallback: sending simple notification to user...");
+        try {
+          const fallbackParams = {
+            from_name: "Digital Innovations Team",
+            from_email: "info@dgtlinnovations.in",
+            phone: "Thank you message",
+            service: `Thank you for your inquiry about ${formData.service}`,
+            message: `Dear ${formData.name}, thank you for contacting us. We'll get back to you soon!`,
+            to_name: formData.name,
+            reply_to: "info@dgtlinnovations.in",
+          };
+          
+          await emailjs.send(
+            serviceId,
+            adminTemplateId, // Use admin template as fallback
+            fallbackParams,
+            publicKey
+          );
+          console.log("✅ Fallback thank you message sent successfully");
+        } catch (fallbackError) {
+          console.error("❌ Fallback also failed:", fallbackError);
+        }
+      }
       
       setSubmitStatus("success");
 
