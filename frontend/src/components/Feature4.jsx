@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import Navbar from "./Navbar";
 
 const Feature4 = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -12,6 +13,19 @@ const Feature4 = () => {
     service: "",
     message: "",
   });
+
+  // Auto-fill service from URL parameters
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const serviceParam = urlParams.get('service');
+    
+    if (serviceParam) {
+      setFormData(prev => ({
+        ...prev,
+        service: serviceParam
+      }));
+    }
+  }, [location.search]);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'config_error', 'duplicate', 'template_error'
@@ -99,7 +113,7 @@ const Feature4 = () => {
 
       <section
         id="contact"
-        className="px-4 sm:px-6 lg:px-8 bg-gradient-to-br min-h-screen flex items-start sm:items-center justify-center relative py-20 sm:py-12"
+        className="px-4 sm:px-6 lg:px-8 bg-gradient-to-br min-h-screen flex items-start sm:items-center justify-center relative py-8 sm:py-6"
       >
         {/* Background Pattern */}
         <div
@@ -469,14 +483,25 @@ const Feature4 = () => {
                       <h4 className="font-semibold text-gray-800 mb-1">
                         Email Address
                       </h4>
-                      <p className="text-gray-600 text-sm">
+                      <div className="text-gray-600 text-sm">
                         <a
-                          href="mailto:info@digitalinnovation.com"
-                          className="hover:text-purple-600 transition-colors duration-300"
+                          href="mailto:info@dgtlinnovations.in"
+                          className="hover:text-purple-600 transition-colors duration-300 flex items-center gap-2 group"
+                          title="Click to open email client"
                         >
-                         info@dgtlinnovations.in
+                          <span>info@dgtlinnovations.in</span>
+                          <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
                         </a>
-                      </p>
+                        <button
+                          onClick={() => navigator.clipboard.writeText('info@dgtlinnovations.in')}
+                          className="text-xs text-gray-400 hover:text-purple-500 mt-1 transition-colors"
+                          title="Copy email address"
+                        >
+                          Click to copy
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

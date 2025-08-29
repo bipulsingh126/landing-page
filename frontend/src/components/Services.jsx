@@ -5,6 +5,23 @@ import Footer from "./Footer";
 
 const Services = () => {
   const navigate = useNavigate();
+
+  // Handle Get Quote button click
+  const handleGetQuote = (serviceTitle) => {
+    // Map service titles to the values expected by the contact form
+    const serviceMapping = {
+      "Web Designing": "Web Development",
+      "Web Development": "Web Development",
+      "Mobile App Development": "Android Development",
+      "Software Development": "Software Development",
+      "AI/ML Tools Development": "AI/ML Development",
+      "Digital Marketing": "Digital Marketing",
+    };
+
+    const mappedService = serviceMapping[serviceTitle];
+    // Navigate to contact page with service parameter
+    navigate(`/contact?service=${encodeURIComponent(mappedService)}`);
+  };
   const services = [
     {
       title: "Web Designing",
@@ -25,7 +42,7 @@ const Services = () => {
       description:
         "Build robust, scalable web applications with modern technologies and best practices.",
       image:
-        "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=300&fit=crop",
+        "https://plus.unsplash.com/premium_photo-1720287601920-ee8c503af775?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       bgColor: "bg-gradient-to-br from-green-50 to-green-100",
       features: [
         "Frontend Development",
@@ -35,7 +52,7 @@ const Services = () => {
       ],
     },
     {
-      title: "App Development",
+      title: "Mobile App Development",
       description:
         "Develop native and cross-platform mobile applications for iOS and Android platforms.",
       image:
@@ -53,7 +70,7 @@ const Services = () => {
       description:
         "Custom software solutions tailored to your business needs and requirements.",
       image:
-        "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",
+        "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?q=80&w=725&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       bgColor: "bg-gradient-to-br from-orange-50 to-orange-100",
       features: [
         "Custom Solutions",
@@ -95,9 +112,9 @@ const Services = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
-      
+
       {/* Hero Section */}
-      <div className="pt-5 pb-10">
+      <div className="pt-2 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
@@ -170,11 +187,13 @@ const Services = () => {
 
               {/* Action Button */}
               <div className="text-center">
-                <button className="w-full bg-white text-gray-800 font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                <button
+                  onClick={() => handleGetQuote(service.title)}
+                  className="w-full bg-white text-gray-800 font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                >
                   Get Quote
                 </button>
               </div>
-            
             </div>
           ))}
         </div>

@@ -46,10 +46,10 @@ const Feature1 = () => {
       description:
         "This is a Food Delivery Mobile App created by Digital Innovations team. The app has been created on Flutter for Android and IOS platform backed is on Php, Laravel.  This app has been created for a startup, it provide login to customers and chef. Chef can list their daily dish and menu, customer can place the order",
       images: [
-       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Final%20Mockup.png",
-       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Login.png",
-       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Product.png",
-       "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Delevery.png"
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Final%20Mockup.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Login.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Product.png",
+        "https://dgtlinnovations.in/admin_asset/Portfolio_Images/1738740725.Delevery.png",
       ],
       technologies: ["Flutter", "Php", "Laravel", "MYSQL"],
     },
@@ -96,6 +96,46 @@ const Feature1 = () => {
                 className="w-full h-96 object-cover rounded-xl shadow-2xl transition-transform duration-300 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Previous Button */}
+              <button
+                onClick={prevProject}
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-700"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={nextProject}
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+              >
+                <svg
+                  className="w-6 h-6 text-gray-700"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </button>
             </div>
 
             {/* Thumbnail Images */}
@@ -111,8 +151,6 @@ const Feature1 = () => {
                     alt={`View ${index + 1}`}
                     className={`flex-shrink-0 w-20 h-20 object-cover rounded-lg cursor-pointer transition-all duration-300 hover:scale-110 ${
                       index === currentImage
-                        ? "ring-4 ring-blue-500 shadow-lg transform scale-105"
-                        : "hover:shadow-md opacity-75 hover:opacity-100"
                     }`}
                     onClick={() => selectImage(index)}
                   />
@@ -149,64 +187,6 @@ const Feature1 = () => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center justify-between mt-12 px-4">
-          {/* Previous Button */}
-          <button
-            onClick={prevProject}
-            className="group relative flex items-center px-6 py-3 text-white font-semibold text-sm rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-          >
-            <svg
-              className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            <span>Previous</span>
-          </button>
-
-          {/* Dots Indicator */}
-          <div className="flex space-x-2">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToProject(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentProject
-                    ? "bg-blue-600 shadow-md transform scale-125"
-                    : "bg-gray-300 hover:bg-gray-400"
-                }`}
-              />
-            ))}
-          </div>
-
-          {/* Next Button */}
-          <button
-            onClick={nextProject}
-            className="group relative flex items-center px-6 py-3 text-white font-semibold text-sm rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
-          >
-            <span>Next</span>
-            <svg
-              className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </button>
-        </div>
 
             {/* Learn More Button */}
             <div className="pt-6">
@@ -240,7 +220,6 @@ const Feature1 = () => {
         </div>
 
         {/* Navigation */}
-       
       </div>
     </section>
   );
