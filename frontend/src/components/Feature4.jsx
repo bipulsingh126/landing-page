@@ -57,10 +57,10 @@ const Feature4 = () => {
     }
 
     try {
-      const serviceId = "service_gu5imno";
-      const adminTemplateId = "template_syc4oxw";
-      const userTemplateId = "template_rmo9k11";
-      const publicKey = "3d4M0E3ZbFPgVh_Ra";
+      const serviceId = "service_kb8lm3f";
+      const adminTemplateId = "template_1x9uhm9";
+      const userTemplateId = "template_tr0vcg9";
+      const publicKey = "G42JR-V0XDd0tf7oo";
 
       console.log("=== EMAIL CONFIGURATION ===");
       console.log("Service ID:", serviceId);

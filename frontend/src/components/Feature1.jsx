@@ -102,7 +102,7 @@ const Feature1 = () => {
               {/* Previous Button */}
               <button
                 onClick={prevProject}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-80 md:opacity-0 md:group-hover:opacity-100 flex items-center justify-center"
               >
                 <svg
                   className="w-6 h-6 text-gray-700"
@@ -122,7 +122,7 @@ const Feature1 = () => {
               {/* Next Button */}
               <button
                 onClick={nextProject}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-0 group-hover:opacity-100 flex items-center justify-center"
+                className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 opacity-80 md:opacity-0 md:group-hover:opacity-100 flex items-center justify-center"
               >
                 <svg
                   className="w-6 h-6 text-gray-700"

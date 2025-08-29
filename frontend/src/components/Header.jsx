@@ -98,10 +98,10 @@ const Header = () => {
 
     try {
       // EmailJS configuration - Update these with your actual credentials
-      const serviceId = "service_gu5imno"; // Your EmailJS service ID
-      const adminTemplateId = "template_syc4oxw"; // Your EmailJS template ID for admin notification
-      const userTemplateId = "template_rmo9k11"; // Your EmailJS template ID for user thank you (create this in EmailJS)
-      const publicKey = "3d4M0E3ZbFPgVh_Ra"; // Your EmailJS public key
+      const serviceId = "service_kb8lm3f"; // Your EmailJS service ID
+      const adminTemplateId = "template_1x9uhm9"; // Your EmailJS template ID for admin notification
+      const userTemplateId = "template_tr0vcg9"; // Your EmailJS template ID for user thank you (create this in EmailJS)
+      const publicKey = "G42JR-V0XDd0tf7oo"; // Your EmailJS public key
 
       console.log("=== FORM SUBMISSION STARTED ===");
       console.log("Attempting to send emails with data:", formData);
