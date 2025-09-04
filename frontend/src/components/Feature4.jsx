@@ -12,7 +12,6 @@ const Feature4 = () => {
     phone: "",
     service: "",
     message: "",
-    acceptTerms: false,
   });
 
   // Auto-fill service from URL parameters
@@ -30,9 +29,31 @@ const Feature4 = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', 'config_error', 'duplicate', 'template_error'
+  const [phoneError, setPhoneError] = useState('');
+
+  const validatePhoneNumber = (phone) => {
+    // Remove all non-digit characters
+    const cleanPhone = phone.replace(/\D/g, '');
+    
+    if (cleanPhone.length === 0) {
+      return '';
+    } else if (cleanPhone.length < 10) {
+      return 'Phone number must be at least 10 digits';
+    } else if (cleanPhone.length > 11) {
+      return 'Phone number cannot exceed 11 digits';
+    }
+    return '';
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    
+    // Phone number validation
+    if (name === 'phone') {
+      const error = validatePhoneNumber(value);
+      setPhoneError(error);
+    }
+    
     setFormData((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
@@ -51,7 +72,16 @@ const Feature4 = () => {
       return;
     }
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.acceptTerms) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+      setSubmitStatus("error");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate phone number before submission
+    const phoneValidationError = validatePhoneNumber(formData.phone);
+    if (phoneValidationError) {
+      setPhoneError(phoneValidationError);
       setSubmitStatus("error");
       setIsSubmitting(false);
       return;
@@ -183,8 +213,8 @@ const Feature4 = () => {
         phone: "",
         service: "",
         message: "",
-        acceptTerms: false,
       });
+      setPhoneError(''); // Clear phone error
       
     } catch (error) {
       console.error("Error sending email:", error);
@@ -307,7 +337,7 @@ const Feature4 = () => {
                   </div>
                 )}
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="relative">
                     <input
                       type="text"
@@ -338,10 +368,22 @@ const Feature4 = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Phone Number*"
+                      placeholder="Phone Number* "
                       required
-                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
+                      className={`w-full px-4 py-3 rounded-2xl border-2 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md ${
+                        phoneError 
+                          ? 'border-red-400/70 focus:ring-red-400 focus:border-red-400 hover:border-red-500/70' 
+                          : 'border-blue-300/50 focus:ring-blue-400 focus:border-blue-400 hover:border-blue-400/70'
+                      }`}
                     />
+                    {phoneError && (
+                      <div className="absolute -bottom-5 left-0 text-red-500 text-xs mt-1 flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {phoneError}
+                      </div>
+                    )}
                   </div>
 
                   <div className="relative">
@@ -376,65 +418,31 @@ const Feature4 = () => {
                   </div>
                 </div>
 
-                {/* Terms and Conditions Checkbox */}
+                {/* Terms and Privacy Policy Links */}
                 <div className="mt-4">
-                  <label className="flex items-start gap-3 cursor-pointer group">
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        name="acceptTerms"
-                        checked={formData.acceptTerms}
-                        onChange={handleChange}
-                        required
-                        className="sr-only"
-                      />
-                      <div className={`w-5 h-5 rounded border-2 transition-all duration-300 flex items-center justify-center ${
-                        formData.acceptTerms
-                          ? 'bg-blue-500 border-blue-500'
-                          : 'bg-white border-gray-300 group-hover:border-blue-400'
-                      }`}>
-                        {formData.acceptTerms ? (
-                          <svg
-                            className="w-3 h-3 text-white"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={3}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                        ) : null}
-                      </div>
-                    </div>
-                    <div className="text-xs sm:text-sm text-gray-600 leading-relaxed">
-                      I agree to the{' '}
-                      <a
-                        href="/terms-conditions"
-                        className="text-blue-600 hover:text-blue-700 underline font-medium transition-colors duration-300"
-                      >
-                        Terms & Conditions
-                      </a>
-                      {' '}and{' '}
-                      <a
-                        href="/privacy-policy"
-                        className="text-blue-600 hover:text-blue-700 underline font-medium transition-colors duration-300"
-                      >
-                        Privacy Policy
-                      </a>
-                      *
-                    </div>
-                  </label>
+                  <div className="text-xs sm:text-sm text-gray-600 leading-relaxed text-center">
+                   you agree to our{' '}
+                    <a
+                      href="/terms-conditions"
+                      className="text-blue-600 hover:text-blue-700 underline font-medium transition-colors duration-300"
+                    >
+                      Terms & Conditions
+                    </a>
+                    {' '}and{' '}
+                    <a
+                      href="/privacy-policy"
+                      className="text-blue-600 hover:text-blue-700 underline font-medium transition-colors duration-300"
+                    >
+                      Privacy Policy
+                    </a>
+                  </div>
                 </div>
 
                 <button
                   type="submit"
-                  disabled={isSubmitting || !formData.acceptTerms}
+                  disabled={isSubmitting}
                   className={`group relative w-full mt-4 sm:mt-6 px-4 py-2 sm:py-3 md:py-3.5 text-white font-semibold rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 hover:from-blue-700 hover:via-purple-700 hover:to-cyan-700 transition-all duration-700 shadow-lg hover:shadow-2xl hover:shadow-blue-500/50 transform hover:-translate-y-2 hover:scale-110 backdrop-blur-sm border border-white/20 overflow-hidden text-xs sm:text-sm md:text-base ${
-                    isSubmitting || !formData.acceptTerms ? "opacity-70 cursor-not-allowed" : ""
+                    isSubmitting ? "opacity-70 cursor-not-allowed" : ""
                   }`}
                 >
                   {/* Animated background */}

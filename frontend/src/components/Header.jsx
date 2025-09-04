@@ -27,6 +27,7 @@ const Header = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success', 'error', null
+  const [phoneError, setPhoneError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,8 +64,29 @@ const Header = () => {
   }, [animateOut]);
 
   // Form handlers
+  const validatePhoneNumber = (phone) => {
+    // Remove all non-digit characters
+    const cleanPhone = phone.replace(/\D/g, '');
+    
+    if (cleanPhone.length === 0) {
+      return '';
+    } else if (cleanPhone.length < 10) {
+      return 'Phone number must be at least 10 digits';
+    } else if (cleanPhone.length > 11) {
+      return 'Phone number cannot exceed 11 digits';
+    }
+    return '';
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Phone number validation
+    if (name === 'phone') {
+      const error = validatePhoneNumber(value);
+      setPhoneError(error);
+    }
+    
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -91,6 +113,15 @@ const Header = () => {
       !formData.email.trim() ||
       !formData.phone.trim()
     ) {
+      setSubmitStatus("error");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validate phone number before submission
+    const phoneValidationError = validatePhoneNumber(formData.phone);
+    if (phoneValidationError) {
+      setPhoneError(phoneValidationError);
       setSubmitStatus("error");
       setIsSubmitting(false);
       return;
@@ -230,6 +261,7 @@ const Header = () => {
         service: "",
         message: "",
       });
+      setPhoneError(''); // Clear phone error
 
       console.log("Form reset completed");
     } catch (error) {
@@ -397,7 +429,7 @@ const Header = () => {
           >
             <form
               onSubmit={handleSubmit}
-              className="group relative bg-white/98 rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-md transition-all duration-300 hover:shadow-3xl hover:scale-[1.02] hover:-translate-y-2 border border-white/60 overflow-hidden transform-gpu"
+              className="group relative bg-white/98 rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-md transition-all duration-300  border border-white/60 overflow-hidden transform-gpu"
               style={{
                 transform: "rotateX(5deg) rotateY(-5deg) translateZ(30px)",
               }}
@@ -483,7 +515,7 @@ const Header = () => {
                   </div>
                 )}
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   <div className="relative">
                     <input
                       type="text"
@@ -514,10 +546,22 @@ const Header = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Phone Number*"
+                      placeholder="Phone Number* "
                       required
-                      className="w-full px-4 py-3 rounded-2xl border-2 border-blue-300/50 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md hover:border-blue-400/70"
+                      className={`w-full px-4 py-3 rounded-2xl border-2 bg-white/90 placeholder-gray-500 text-gray-800 focus:bg-white focus:outline-none focus:ring-2 text-sm md:text-base transition-all duration-300 shadow-sm hover:shadow-md ${
+                        phoneError 
+                          ? 'border-red-400/70 focus:ring-red-400 focus:border-red-400 hover:border-red-500/70' 
+                          : 'border-blue-300/50 focus:ring-blue-400 focus:border-blue-400 hover:border-blue-400/70'
+                      }`}
                     />
+                    {phoneError && (
+                      <div className="absolute -bottom-5 left-0 text-red-500 text-xs mt-1 flex items-center gap-1">
+                        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {phoneError}
+                      </div>
+                    )}
                   </div>
 
                   <div className="relative">

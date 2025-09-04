@@ -8,6 +8,7 @@ const Portfolio = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
+  const [expandedDescriptions, setExpandedDescriptions] = useState({});
 
   // Function to handle project selection and scroll to top
   const handleProjectSelect = (project) => {
@@ -39,6 +40,18 @@ const Portfolio = () => {
   const handleReload = () => {
     setReloadKey((prev) => prev + 1);
     setIsLoaded(false);
+  };
+
+  const toggleDescription = (itemId) => {
+    setExpandedDescriptions(prev => ({
+      ...prev,
+      [itemId]: !prev[itemId]
+    }));
+  };
+
+  const truncateText = (text, maxLength = 150) => {
+    if (text.length <= maxLength) return text;
+    return text.substr(0, maxLength) + '...';
   };
 
   const filterButtons = [
@@ -372,7 +385,7 @@ const Portfolio = () => {
               <div
                 key={item.id}
                 onClick={() => handleProjectSelect(item)}
-                className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group cursor-pointer border border-gray-100 hover:border-blue-200 ${
+                className={`bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 group cursor-pointer border border-gray-100 hover:border-blue-200 flex flex-col h-full ${
                   isLoaded
                     ? "opacity-100 translate-y-0"
                     : "opacity-0 translate-y-8"
@@ -409,12 +422,30 @@ const Portfolio = () => {
                     {item.category}
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 mb-4">{item.description}</p>
-                  <div className="flex items-center justify-between">
+                  <div className="text-gray-600 mb-4 flex-1">
+                    <p className="leading-relaxed">
+                      {expandedDescriptions[item.id] 
+                        ? item.description 
+                        : truncateText(item.description)
+                      }
+                    </p>
+                    {item.description.length > 150 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleDescription(item.id);
+                        }}
+                        className="text-blue-600 hover:text-blue-700 text-sm font-medium mt-2 transition-colors duration-200 inline-block"
+                      >
+                        {expandedDescriptions[item.id] ? 'Read Less' : 'Read More'}
+                      </button>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-between mt-auto">
                     <div className="flex flex-wrap gap-1">
                       {item.technologies.slice(0, 2).map((tech, index) => (
                         <span
