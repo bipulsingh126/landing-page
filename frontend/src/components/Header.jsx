@@ -305,6 +305,17 @@ const Header = () => {
               {animatedTexts.map((text, index) => (
                 <div
                   key={index}
+                  onClick={() => {
+                    const serviceMapping = {
+                      "Web Design": "Web Designing",
+                      "Mobile App Development": "Mobile App Development", 
+                      "Software Development": "Software Development",
+                      "AI/ML Development": "AI/ML Tools Development",
+                      "Digital Marketing": "Digital Marketing"
+                    };
+                    const mappedService = serviceMapping[text];
+                    navigate(`/services?highlight=${encodeURIComponent(mappedService)}`);
+                  }}
                   className={`group relative bg-white rounded-2xl p-4 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-500 cursor-pointer transform hover:scale-105 hover:-translate-y-1 ${
                     index === currentTextIdx
                       ? "ring-2 ring-blue-300 scale-105"

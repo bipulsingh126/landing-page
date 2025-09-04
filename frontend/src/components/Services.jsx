@@ -1,10 +1,29 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 const Services = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [highlightedService, setHighlightedService] = useState(null);
+
+  // Get highlighted service from URL params
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.search);
+    const highlight = urlParams.get('highlight');
+    setHighlightedService(highlight);
+    
+    // Auto-scroll to highlighted service after component mounts
+    if (highlight) {
+      setTimeout(() => {
+        const element = document.getElementById(`service-${highlight.replace(/\s+/g, '-').toLowerCase()}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
+    }
+  }, [location.search]);
 
   // Handle Get Quote button click
   const handleGetQuote = (serviceTitle) => {
@@ -117,6 +136,14 @@ const Services = () => {
       <div className="pt-2 pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
+            {highlightedService && (
+              <div className="mb-6 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl p-4 inline-block shadow-lg">
+                <p className="font-semibold text-sm flex items-center gap-2">
+                  <span className="text-lg">👆</span>
+                  You clicked: <span className="font-bold text-yellow-300">{highlightedService}</span>
+                </p>
+              </div>
+            )}
             <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
               Our Services
             </h1>
@@ -131,73 +158,87 @@ const Services = () => {
       {/* Services Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className={`${service.bgColor} rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}
-            >
-              {/* Service Image */}
-              <div className="relative mb-6 overflow-hidden rounded-xl">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-48 object-cover"
-                />
-              </div>
+          {services.map((service, index) => {
+            const isHighlighted = highlightedService === service.title;
+            return (
+              <div
+                key={index}
+                id={`service-${service.title.replace(/\s+/g, '-').toLowerCase()}`}
+                className={`${
+                  isHighlighted 
+                    ? 'ring-2 ring-blue-400 shadow-xl scale-[1.02] bg-white border-2 border-blue-300' 
+                    : service.bgColor
+                } rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1`}
+              >
+                {/* Service Image */}
+                <div className="relative mb-6 overflow-hidden rounded-xl">
+                  {isHighlighted && (
+                    <div className="absolute top-3 right-3 z-10 bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-lg shadow-md">
+                      🎯 Selected
+                    </div>
+                  )}
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-48 object-cover"
+                  />
+                </div>
 
-              {/* Service Content */}
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                  {service.description}
-                </p>
-              </div>
+                {/* Service Content */}
+                <div className="text-center mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    {service.description}
+                  </p>
+                </div>
 
-              {/* Features */}
-              <div className="mb-6">
-                <h4 className="text-lg font-semibold text-gray-800 mb-3">
-                  Key Features:
-                </h4>
-                <ul className="space-y-2">
-                  {service.features.map((feature, featureIndex) => (
-                    <li
-                      key={featureIndex}
-                      className="flex items-center text-sm text-gray-600"
-                    >
-                      <svg
-                        className="w-4 h-4 mr-2 text-green-500"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                {/* Features */}
+                <div className="mb-6">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-3">
+                    Key Features:
+                  </h4>
+                  <ul className="space-y-2">
+                    {service.features.map((feature, featureIndex) => (
+                      <li
+                        key={featureIndex}
+                        className="flex items-center text-sm text-gray-600"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                        <svg
+                          className="w-4 h-4 mr-2 text-green-500"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M5 13l4 4L19 7"
+                          />
+                        </svg>
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
-              {/* Action Button */}
-              <div className="text-center">
-                <button
-                  onClick={() => handleGetQuote(service.title)}
-                  className="w-full bg-white text-gray-800 font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                >
-                  Get Quote
-                </button>
+                {/* Action Button */}
+                <div className="text-center">
+                  <button
+                    onClick={() => handleGetQuote(service.title)}
+                    className="w-full bg-white text-gray-800 font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                  >
+                    Get Quote
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
